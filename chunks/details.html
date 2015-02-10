@@ -1,0 +1,423 @@
+<!-- begin:article -->
+<div class="row">
+	<div class="col-md-9 col-md-push-3">
+		<div class="row">
+			<div class="col-md-12 single-post">
+				<ul class="nav nav-tabs nav-justified" id="myTab">
+					<li class="active">
+						<a data-toggle="tab" href="#detail"><i class="fa fa-university"></i> Property Detail</a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#location"><i class="fa fa-map-marker"></i> Property Location</a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#contact"><i class="fa fa-paper-plane-o"></i> More info.</a>
+					</li>
+				</ul>
+
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade in active" id="detail">
+						<div class="row">
+								<div class="col-md-12">
+									<h2>[[+streetName]]</h2>
+									<div class="carousel slide" data-ride="carousel" id="slider-property">
+										<ol class="carousel-indicators">
+											<li class="active" data-slide-to="0" data-target="#slider-property">[[+tinyImageString]]</li>
+
+											<li class="active" data-slide-to="1" data-target="#slider-property"><img alt="" src="[[++assets_url]]img/img03.jpg"></li>
+										</ol>
+
+										<div class="carousel-inner">
+											[[+resOutput]]
+
+											<div class="item"><img alt="[[+formatAddress]]" src="[[+primaryImagePath]]"></div>
+
+											<div class="item active"><img alt="" src="[[++assets_url]]img/img03.jpg"></div>
+										</div><a class="left carousel-control" data-slide="prev" href="#slider-property"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" data-slide="next" href="#slider-property"><span class="glyphicon glyphicon-chevron-right"></span></a>
+									</div>
+								</div>
+							</div>
+						<div class="row">
+							[[if? &subject=`[[+featureList]]` &operator=`notempty` &then=`
+								<div class="col-md-6 col-sm-6">
+									<h3>Property Overview</h3>
+									<table class="table table-bordered">
+										[[!if?
+										&subject=`[[+property_id]]`
+										&operator=`notempty` &then=`
+										<tr>
+											<td width="20%"><strong>ID</strong></td>
+											<td>[[+property_id]]</td>
+										  </tr>` 
+										 &else=`` ]]
+										<tr>
+											<td><strong>Price</strong></td>
+											<td>[[+priceTypeLabel]] [[+outputAskingPrice]] [[+letFrequency]]</td>
+										</tr>
+										<tr>
+											<td><strong>Contract</strong></td>
+											<td>[[+priceType]]</td>
+										</tr>
+										<tr>
+											<td><strong>Address</strong></td>
+											<td>[[+dispAddress]]</td>
+										</tr>
+										<tr>
+											<td><strong>Bathrooms</strong></td>
+											<td>[[+bathRooms]]</td>
+										</tr>
+										<tr>
+											<td><strong>Bedrooms</strong></td>
+											<td>[[+bedRooms]]</td>
+										</tr>
+										[[!if?
+										&subject=`[[+sqmHouse]]`
+										&operator=`notempty` &then=`
+										<tr>
+											<td><strong>Area</strong></td>
+											<td>[[+sqmHouse]]m<sup>2</sup></td>
+										</tr>`
+										&else=`` ]]
+										[[!if?
+										&subject=`[[+epcBand]]`
+										&operator=`notempty` &then=`
+										<tr>
+											<td><strong>EPC Rating</strong></td>
+											<td>Band [[+epcBand]]</td>
+										</tr>`
+										&else=`` ]]
+									</table>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<h3>Property Features</h3>
+										<div style="margin-left: 2em">
+											[[+featureList]]
+										</div>
+								</div>`
+								&else=`
+								<div class="col-md-12 col-sm-12">
+									<h3>Property Overview</h3>
+
+									<table class="table table-bordered">
+										<!-- <tr>
+					<td width="20%"><strong>ID</strong></td>
+					<td>#121</td>
+				  </tr> -->
+
+										<tr>
+											<td><strong>Price</strong></td>
+
+											<td>[[+priceTypeLabel]] [[+outputAskingPrice]] [[+letFrequency]]</td>
+										</tr>
+
+										<tr>
+											<td><strong>Type</strong></td>
+
+											<td>Residential</td>
+										</tr>
+
+										<tr>
+											<td><strong>Contract</strong></td>
+
+											<td>Sale</td>
+										</tr>
+
+										<tr>
+											<td><strong>Address</strong></td>
+
+											<td>[[+dispAddress]]</td>
+										</tr>
+
+										<tr>
+											<td><strong>Bathrooms</strong></td>
+
+											<td>[[+bathRooms]]</td>
+										</tr>
+
+										<tr>
+											<td><strong>Bedrooms</strong></td>
+
+											<td>[[+bedRooms]]</td>
+										</tr>
+										[[if? 
+										&subject=`[[+sqmHouse]]` 
+										&operator=`notempty` 
+										&then=`
+										<tr>
+											<td><strong>Area</strong></td>
+
+											<td>[[+sqmHouse]]m<sup>2</sup></td>
+										</tr>`
+										&else=`` ]]
+									</table>
+								</div>`
+								]]
+							</div>
+						<div class="row">
+								<div class="col-md-12">
+									<h3>Property Description</h3>
+									[[+descText]]
+									
+								</div>
+							</div>
+					</div><!-- break -->
+
+						<div class="tab-pane fade" id="location">
+								<div class="row">
+									<div class="col-md-12">
+										<div id="map-property">
+											<script type="text/javascript">
+		var propertyMapData = [[+outputMapDataString]];
+											</script>
+										</div>
+									</div>
+								</div>
+						</div>
+
+						
+						<div class="tab-pane fade" id="contact">
+								<div class="row">
+									<div class="col-md-12">
+										<h3>Interested in this property?</h3>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<!-- Here we use the If snippet to either insert the negotiator's details if one is assigned, or the general property department details if not using the &then and &else variables -->
+										[[if? &subject=`[[+staffNeg_firstName]]` &operator=`notempty` &then=`
+
+										<div class="team-container team-dark">
+											<div class="team-image"><img alt="[[+staffNeg_firstName]] [[+staffNeg_lastName]]" src="[[+staffNeg_proPicParsed]]"></div>
+
+											<div class="team-description">
+												<h3>[[+staffNeg_firstName]] [[+staffNeg_lastName]]</h3>
+
+												<p><i class="fa fa-phone"></i> Office : [[+staffNeg_workTel1]]<br>
+												<i class="fa fa-envelope"></i> Email : [[+staffNeg_userNme]]<br>
+												I am the negotiator looking after this property. Please get in touch if you would like more information.</p>
+
+												<div class="team-social">
+													<span><a class="fa fa-twitter" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="Twitter"></a></span> 
+													<span><a class="fa fa-facebook" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="Facebook"></a></span> 
+													<span><a class="fa fa-google-plus" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="Google Plus"></a></span> 
+													<span><a class="fa fa-envelope" data-placement="top" href="#" rel="tooltip" title="Email"></a></span> 
+													<span><a class="fa fa-linkedin" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="LinkedIn"></a></span>
+												</div>
+											</div>
+										</div>` 
+										&else=`
+										<div class="team-container team-dark">
+											<div class="team-description">
+												<h3>Our property team</h3>
+			
+												<p><i class="fa fa-phone"></i> Office : +44 131 516 3411<br>
+												<i class="fa fa-envelope"></i> Email : info@bdphq.com<br>
+												Any member of our team can help you with this property. Please get in touch if you would like more information.</p>
+			
+												<div class="team-social">
+													<span><a class="fa fa-twitter" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="Twitter"></a></span> 
+													<span><a class="fa fa-facebook" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="Facebook"></a></span> 
+													<span><a class="fa fa-google-plus" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="Google Plus"></a></span> 
+													<span><a class="fa fa-envelope" data-placement="top" href="#" rel="tooltip" title="Email"></a></span> 
+													<span><a class="fa fa-linkedin" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="LinkedIn"></a></span>
+												</div>
+											</div>
+										</div>`]]
+									</div>
+
+									<div class="col-md-6 col-sm-6">
+										<form>
+											<div class="form-group">
+												<label for="name">Name</label> <input class="form-control input-lg" placeholder="Enter name :" type="text">
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email address</label> <input class="form-control input-lg" placeholder="Enter email :" type="email">
+											</div>
+
+											<div class="form-group">
+												<label for="telp">Tel.</label> <input class="form-control input-lg" placeholder="Enter phone number :" type="text">
+											</div>
+
+											<div class="form-group">
+												<label for="message">Message</label> 
+												<textarea class="form-control input-lg" placeholder="Type a message :" rows="7">
+		</textarea>
+											</div>
+
+											<div class="form-group">
+												<input class="btn btn-warning btn-lg" name="submit" type="submit" value="Send Message">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+				</div>
+			</div><!-- close:col-md-12 single-post -->
+		</div><!-- close:row -->
+	</div><!-- end:article -->
+	<div class="col-md-3 col-md-pull-9 sidebar">
+		<!-- begin:sidebar -->
+		<!-- break -->
+		<div class="widget-white favorite">
+		  <a href="#" data-toggle="modal" data-target="#sendFriend"><i class="fa fa-envelope"></i> Send to a friend</a>
+		</div>
+		<!-- break -->
+		<div class="widget-white favorite">
+		  <a href="#" data-toggle="modal" data-target="#espchr"><i class="fa fa-book"></i> Home Report</a>
+		</div>
+		<!-- break -->
+		[[!if?&subject=`[[+brochurePathPublic]]`
+					&operator=`!=`
+					&then=`<div class="widget-white favorite">
+		  <a href="[[+brochurePathPublic]]"><i class="fa fa-newspaper-o"></i> Brochure</a>
+		</div>`
+					&else=``
+					]]
+		<!-- break -->
+		[[!if?&subject=`[[+floorPlanPdfPathPublic]]`
+					&operator=`!=`
+					&then=`<div class="widget-white favorite">
+		  <a href="[[+floorPlanPdfPathPublic]]"><i class="fa fa-file-pdf-o"></i> PDF floor plan</a>
+					</div>`
+					&else=``
+					]]
+		<!-- break -->
+		<div class="widget-white favorite">
+		  <a href="[[+epcDocPathPublic]]"><i class="fa fa-sort-amount-asc"></i> EPC</a>
+		</div>
+		<!-- break -->
+		<div class="widget-white favorite">
+		  <a href="#" data-toggle="modal" data-target="#bookViewing"><i class="fa fa-calendar"></i> Book a viewing</a>
+		</div>
+
+		<!------ Send to Friend form ------>
+		<div class="modal fade" id="sendFriend" tabindex="-1" role="dialog" aria-labelledby="sendFriend" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Send to a Friend</h4>
+					</div>
+					<div class="modal-body">
+					   <form id="sendFriend" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="your-name">Your Name</label> 
+								<div class="col-sm-7">
+									<input class="form-control input-lg" placeholder="Enter your name :" type="text" name="your-name">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="your-email">Email address</label>
+								<div class="col-sm-7"> 
+									<input class="form-control input-lg" placeholder="Enter your email :" type="email" name="your-email">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="friends-name">Friend's Name</label> 
+								<div class="col-sm-7">
+									<input class="form-control input-lg" placeholder="Enter your friend's name :" type="text" name="friends-name">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="friends-email">Friend's email </label>
+								<div class="col-sm-7"> 
+									<input class="form-control input-lg" placeholder="Enter your friend's email :" type="email" name="friends-email">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="message">Message</label>
+								<div class="col-sm-7"> 
+									<textarea class="form-control input-lg" placeholder="Type a message :" rows="7">
+		</textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-7">
+									<button type="submit" class="btn btn-default">Send message</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!------- Home Report iFrame -------->
+		<div class="modal fade" id="espchr" tabindex="-1" role="dialog" aria-labelledby="espchr" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Order ESPC Home Report</h4>
+					</div>
+					<div class="modal-body">
+						The ESPC iFrame loads in here...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!------- Book a Viewing -------->
+		<div class="modal fade" id="bookViewing" tabindex="-1" role="dialog" aria-labelledby="bookViewing" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Book a Viewing</h4>
+					</div>
+					<div class="modal-body">
+						The Book a Viewing form loads in here...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="widget widget-sidebar widget-white">
+		  <div class="widget-header">
+			<h3>Recent Property</h3>
+		  </div>    
+		  <ul>
+			[[!getResources? 
+				&resources=`[[!getRecentlyViewed]]` 
+				&parents=`2` 
+				&tpl=`recentTpl`
+			]]
+		  </ul>
+		</div> -->
+		<!-- break -->
+		<!-- <div class="widget widget-sidebar widget-white">
+		  <div class="widget-header">
+			<h3>Property Type</h3>
+		  </div>    
+		  <ul class="list-check">
+			[[ +pTypeOptions ]]
+		  </ul>
+		</div> -->
+		<!-- break -->
+		<!-- <div class="widget widget-sidebar widget-white">
+		  <div class="widget-header">
+			<h3>Top Agents</h3>
+		  </div>    
+		  <ul>
+			<li><a href="#">John Doe</a></li>
+			<li><a href="#">Christoper Drew</a></li>
+			<li><a href="#">Jane Doe</a></li>
+			<li><a href="#">Jeny</a></li>
+		  </ul>
+		</div> -->
+		<!-- break -->
+		<!-- end:sidebar -->
+	</div>
+</div>

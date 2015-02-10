@@ -1,0 +1,32 @@
+<div class="col-md-4 col-sm-6 col-xs-12">
+	<div class="property-container">
+	  <div class="property-image">
+	    <a href="[[+detailPath]]"><img src="[[+imagePath]]&w=261&h=213&q=90" alt="[[+dispAddress]]"></a>
+	    <div class="property-price">
+	      <h4>[[+pType]]</h4>
+	      <span>[[+outputAskingPrice]] [[+letFrequency]]</span>
+	    </div>
+	    [[!if?
+	  		&subject=`[[+priceTypeLabel]]`
+	  		&operator=`!=`
+	  		&then=`<div class="property-status">
+		  		<span>[[+priceTypeLabel]]</span>
+		  		</div>`
+	  		&else=``
+	  	]]
+	  </div>
+	  <div class="property-features">
+	  	[[!if?
+	  		&subject=`[[!+sqmHouse]]`
+	  		&operator=`!=`
+	  		&then=`<span><i class="fa fa-home"></i> [[!+sqmHouse]] m<sup>2</sup></span>`
+	  		&else=``
+	  	]]
+	    <span><i class="fa fa-hdd-o"></i> [[+bedRooms]] Bed</span>
+	    <span><i class="fa fa-male"></i> [[+bathRooms]] Bath</span>
+	  </div>
+	  <div class="property-content">
+	    <h3><a href="[[+detailPath]]">[[+pType]]</a> <small>[[+dispAddress]]</small></h3>
+	  </div>
+	</div>
+</div>

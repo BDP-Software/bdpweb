@@ -1,0 +1,141 @@
+<!-- begin:header -->
+<div id="header" class="header-slide">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+	      <div class="quick-search">
+	      <!-- Tabs -->
+		   	<ul id="homeSearch" class="nav nav-tabs nav-justified">
+		      <li class="active"><a href="#sales" data-toggle="tab"><i class="fa fa-university"></i> Sales</a></li>
+		      <li><a href="#lettings" data-toggle="tab"><i class="fa fa-paper-plane-o"></i>  Lettings</a></li>
+	    	</ul>
+<!-- /tabs -->
+		  <div id="myTabContent" class="tab-content">
+<!-- Sales tab -->
+			<div id="sales" class="tab-pane fade in active">
+			    <div class="row">
+			      <div class="col-md-12">
+				  
+		            <form role="form" method="post" action="[[+formActionPath]]" class="bdp_searchform">
+		              <div class="col-md-12 col-sm-12">
+		                <div class="form-group">
+		                  <label for="location">Location</label>
+						  <input class="form-control" name="keysearch" value="[[+keysearch_Value]]" placeholder="eg, street name, postcode, area"/>                
+						</div>
+					  </div>
+		              <!-- break -->
+					 <div class="col-md-6 col-sm-6 col-xs-6">
+					 	<div class="form-group">
+		                  <label for="minprice">Min Price</label>
+		                  <select class="form-control">
+		                    [[ +minPriceOptions ]]
+		                  </select>
+		                </div>
+		               <div class="form-group">
+		                  <label for="bedroom">Min Bedrooms</label>
+		                  <select class="form-control">
+		                    [[ +minBedOptions ]]
+		                  </select>
+		               </div>
+		               
+		             </div>
+		
+		              <!-- break -->
+		              <div class="col-md-6 col-sm-6 col-xs-6">
+		                
+		                <div class="form-group">
+		                  <label for="maxprice">Max Price</label>
+		                  <select class="form-control">
+		                    [[ +maxPriceOptions ]]
+		                  </select>
+		                </div>
+		                <div class="form-group">
+		                  <label for="status">Area</label>
+		                  <select class="form-control">
+		                    [[+townOptions]]
+		                  </select>
+		               </div>
+		              </div>
+		              <!-- break -->
+		              <div class="col-md-6 col-sm-6 col-xs-6">
+		                <div class="form-group">
+		                  <label for="type">Type</label>
+		                  <select class="form-control">
+		                    [[ +pTypeOptions ]]
+		                  </select>
+		                </div>
+		                
+		              </div>
+		              <div class="col-md-12 col-sm-12"><input type="submit" name="submit" value="Search" class="btn btn-warning btn-lg btn-block"></div>
+		
+		            </form>
+		          </div>
+		        </div>
+			    </div>
+<!-- Lettings tab -->
+			<div id="lettings" class="tab-pane fade in">
+			    <div class="row">
+			      <div class="col-md-12">
+		            <form role="form" method="post" action="[[+formActionPath]]" class="bdp_searchform">
+		              <div class="col-md-12 col-sm-12">
+		                <div class="form-group">
+		                  <label for="location">Location</label>
+						  <input class="form-control" name="keysearch" value="[[+keysearch_Value]]" placeholder="eg, street name, postcode, area"/>                
+						</div>
+					  </div>
+		              <!-- break -->
+					 <div class="col-md-6 col-sm-6 col-xs-6">
+					 	<div class="form-group">
+		                  <label for="minprice">Min Price</label>
+		                  <select class="form-control">
+		                    [[ +minPriceOptions ]]
+		                  </select>
+		                </div>
+		               <div class="form-group">
+		                  <label for="bedroom">Min Bedrooms</label>
+		                  <select class="form-control">
+		                    [[ +minBedOptions ]]
+		                  </select>
+		               </div>
+		               
+		             </div>
+		
+		              <!-- break -->
+		              <div class="col-md-6 col-sm-6 col-xs-6">
+		                
+		                <div class="form-group">
+		                  <label for="maxprice">Max Price</label>
+		                  <select class="form-control">
+		                    [[ +maxPriceOptions ]]
+		                  </select>
+		                </div>
+		                <div class="form-group">
+		                  <label for="status">Area</label>
+		                  <select class="form-control">
+		                    [[+townOptions]]
+		                  </select>
+		               </div>
+		              </div>
+		              <!-- break -->
+		              <div class="col-md-6 col-sm-6 col-xs-6">
+		                <div class="form-group">
+		                  <label for="type">Type</label>
+		                  <select class="form-control">
+		                    [[ +pTypeOptions ]]
+		                  </select>
+		                </div>
+		                
+		              </div>
+		              <div class="col-md-12 col-sm-12"><input type="submit" name="submit" value="Search" class="btn btn-warning btn-lg btn-block"></div>
+		
+		            </form>
+		        </div>
+			    </div>
+			</div>
+		  </div><!-- /myTabContent -->
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end:header -->

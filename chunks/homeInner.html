@@ -1,0 +1,39 @@
+<div class="col-md-3 col-sm-6 col-xs-12">
+	<div class="property-container [[+ extraClass ]]">
+	  <div class="property-image">
+	    <a href="[[+detailPath]]"><img class="thumb" src="[[+imagePath]]&w=343&h=228&q=80" alt="[[+districtName]]"/></a>
+	    <div class="property-price">
+	      [[!if?
+	  		&subject=`[[+districtName]]`
+	  		&operator=`!=`
+	  		&then=`<h4>[[+districtName]]</h4>`
+	  		&else=`<h4>[[+town]]</h4>`
+	  	]]
+	      <span>[[+outputAskingPrice]] [[+letFrequency]]</span>
+	    </div>
+	    <div class="property-status">
+	      <span>For Sale</span>
+	    </div>
+	  </div>
+	  <div class="property-features">
+	   [[!if?
+	  		&subject=`[[!+sqmHouse]]`
+	  		&operator=`!=`
+	  		&then=`<span><i class="fa fa-home"></i> [[!+sqmHouse]] m<sup>2</sup></span>`
+	  		&else=``
+	  	]]
+	    <span><i class="fa fa-hdd-o"></i> [[+bedRooms]] Bed</span>
+	    <span><i class="fa fa-male"></i> [[+bathRooms]] Bath</span>
+	  </div>
+	  <div class="property-content">
+	    <h3><a href="[[+detailPath]]">[[if?
+	    	&subject=`[[+espcDistrict]]`
+	    	&operator=`!=`
+	    	&then=`[[+espcDistrict]]`
+	    	&else=``
+	    ]]
+	     </a> <small>[[+pType]]</small></h3> 
+	  </div>
+	</div>
+</div>
+<!-- break -->

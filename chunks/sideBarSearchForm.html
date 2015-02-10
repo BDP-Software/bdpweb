@@ -1,0 +1,111 @@
+<!-- begin:sidebar -->
+<div class="widget-sidebar widget-white">
+  <div class="widget-header">
+    <h3>Advanced Search</h3>
+  </div> 
+
+	<ul id="sidebarTab" class="nav nav-tabs nav-justified">
+	  <li class="active"><a href="#sales" data-toggle="tab"><i class="fa fa-university"></i> Sales</a></li>
+	  <li><a href="#lettings" data-toggle="tab"><i class="fa fa-paper-plane-o"></i>  Lettings</a></li>
+	</ul>
+	  <div id="myTabContent" class="tab-content">
+		<div id="sales" class="tab-pane fade in active">
+		    <div class="row">
+		      <div class="col-md-12">
+				  <form role="form" class="advance-search" method="post" action="[[+formActionPath]]" >
+				    <div class="form-group">
+				      <label for="location">Location</label>
+				      <select class="form-control">
+				        <option>Edinburgh</option>
+				        <option>Doral</option>
+				        <option>Little Havana</option>
+				        <option>Perrine</option>
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="type">Property Type</label>
+				      <select class="form-control" name="property_type">
+							[[+pTypeOptions]]
+						</select>
+				    </div>
+				    <div class="form-group">
+				      <label for="beds">Beds</label>
+				      <select class="form-control">
+				        [[+minBedOptions]]
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="min-price">Min Price</label>
+				      <select class="form-control">
+				        [[+minPriceOptions]]
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="max-price">Max Price</label>
+				      <select class="form-control">
+				        [[+maxPriceOptions]]
+				      </select>
+				    </div>
+				    <input type="submit" name="submit" value="Search" class="btn btn-warning btn-block">
+				  </form>
+		      </div>
+			</div>
+		</div>
+		<div id="lettings" class="tab-pane fade">
+		    <div class="row">
+		      <div class="col-md-12">
+				  <form role="form" class="advance-search" method="post" action="[[+formActionPath]]" >
+				    <div class="form-group">
+				      <label for="location">Location</label>
+				      <select class="form-control">
+				        <option>Miami</option>
+				        <option>Doral</option>
+				        <option>Little Havana</option>
+				        <option>Perrine</option>
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="type">Property Type</label>
+				      <select class="form-control">
+				        [[+pTypeOptions]]
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="beds">Beds</label>
+				      <select class="form-control">
+				        [[+minBedOptions]]
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="min-price">Min Price</label>
+				      <select class="form-control">
+				        [[+minPriceOptions]]
+				      </select>
+				    </div>
+				    <div class="form-group">
+				      <label for="max-price">Max Price</label>
+				      <select class="form-control">
+				        [[+maxPriceOptions]]
+				      </select>
+				    </div>
+				    <input type="submit" name="submit" value="Search" class="btn btn-warning btn-block">
+				  </form>
+		      </div>
+		    </div>
+		  </div>
+	  </div>
+</div>
+
+
+
+<!-- break -->
+<!-- <div class="widget widget-sidebar widget-white">
+  <div class="widget-header">
+    <h3>Property Type</h3>
+  </div>    
+  <ul class="list-check">
+    [[+pTypeOptions]]
+  </ul>
+</div> -->
+<!-- break -->
+<!-- end:sidebar -->
