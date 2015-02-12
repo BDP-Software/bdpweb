@@ -1,0 +1,180 @@
+/*
+ * BDP Modx Core CSS
+ * Option 1
+ * V 1.0.0
+ * Last Modified 06/02/2015
+*/
+
+/* Home page search box */
+.quick-search{
+	padding: 0px 0px 15px;
+	background: rgba(255,255,255,.7);
+}
+/* ID Header is not in Bootstrap core */
+#header.heading .quick-search{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+
+/* Home page property listing */
+
+.property-container{
+	margin-bottom: 30px;
+	background: #fff;
+	border: 1px solid #eee;
+}
+
+.property-image{
+	position: relative;
+	overflow: hidden;
+}
+
+.property-image img{
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+}
+
+.property-status{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: block;
+	width: auto;
+	max-width: 70%;
+	padding: 5px 10px;
+	background: #1b1d2a;
+	font-weight: 400;
+	color: #fff;
+}
+
+.property-price{
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: auto;
+	max-width: 80%;
+	padding: 8px 16px;
+	background: #00423B;
+	color: #fff;
+	text-align: center;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 600;
+}
+
+.property-price h4{
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0 0 5px;
+	font-weight: 400;
+}
+
+.property-price small{
+	font-size: 13px;
+	font-weight: 400;
+}
+
+.property-features{
+	display: block;
+	padding: 5px 10px;
+	background: #00423B;
+	color: #fff;
+}
+
+.property-features span{
+	padding: 2px 5px;
+	font-size: 13px;
+}
+
+.property-content{
+	padding: 10px 15px;
+	min-height: 110px;
+}
+
+.property-content h3,
+.property-text h3{
+	display: block;
+	margin-bottom: 20px;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 600;
+}
+
+.property-content h3 small,
+.property-text h3 small{
+	display: block;
+	margin-top: 10px;
+	font-size: 13px;
+	font-style: italic;
+}
+
+.property-content-list{
+	display: table;
+}
+
+.property-image-list{
+	position: relative;
+	width: 50%;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.property-image-list img{
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+}
+
+.property-image-list .property-status{
+	position: absolute;
+	right: 0;
+	bottom: 35px;
+}
+
+.property-image-list .property-footer a{
+	background: #d9dae9;
+	color: #898ba2;
+}
+
+.property-image-list .property-footer a:hover{
+	background: #898ba2;
+	color: #d9dae9;
+}
+
+.property-text{
+	position: relative;
+	width: 50%;
+	display: table-cell;
+	padding: 15px;
+	vertical-align: top;
+}
+
+.property-footer{
+	position: relative;
+	display: table;
+	width: 100%;
+	padding: 0;
+}
+
+.property-footer a{
+	display: table-cell;
+	width: 50%;
+	padding: 8px 12px;
+	text-align: center;
+	background: #00423B;
+	font-size: 18px;
+	color: rgba(0,0,0,.25);
+	overflow: hidden;
+}
+
+.property-footer a:hover,
+.property-footer a:focus{
+	color: #eee;
+	background: #00423B;
+	overflow: hidden;
+	outline: none;
+}

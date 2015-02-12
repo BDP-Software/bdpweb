@@ -1,12 +1,8 @@
-<div class="modal fade" id="enquire_popup" tabindex="-1" role="dialog" aria-labelledby="enquire_popup" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Book a Viewing</h4>
-			</div>
-			<div class="modal-body">		
-		<div id="error_message" class="hide"></div>					
+<div id="enquire_popup" class="popup_form">	
+	<h2>Request a Viewing</h2>	
+	<div id="popup_inner">		
+		<div id="error_message" class="hide"></div>		
+		<div class="full_form_container">			
 			<form enctype="multipart/form-data" action="" method="post" name="viewing_form" id="viewing_form">		
 				<div class="form_container">			
 					<div class="admin_form">				
@@ -93,10 +89,7 @@
 				<input value="formname_viewing_form" name="formname_viewing_form" type="hidden"/>		
 				<a id="popup_submit" href="#">Send</a>	
 			</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
+		</div>	
+	</div>	
+	<div class="cleared"></div>
 </div>

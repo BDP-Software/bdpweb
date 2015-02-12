@@ -8,7 +8,10 @@
 						<a data-toggle="tab" href="#detail"><i class="fa fa-university"></i> Property Detail</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#location"><i class="fa fa-map-marker"></i> Property Location</a>
+						<a data-toggle="tab" href="#map"><i class="fa fa-map-marker"></i> Map</a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#street-view"><i class="fa fa-road"></i> Street View</a>
 					</li>
 					<li>
 						<a data-toggle="tab" href="#contact"><i class="fa fa-paper-plane-o"></i> More info.</a>
@@ -18,25 +21,16 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade in active" id="detail">
 						<div class="row">
-								<div class="col-md-12">
-									<h2>[[+streetName]]</h2>
-									<div class="carousel slide" data-ride="carousel" id="slider-property">
-										<ol class="carousel-indicators">
-											<li class="active" data-slide-to="0" data-target="#slider-property">[[+tinyImageString]]</li>
-
-											<li class="active" data-slide-to="1" data-target="#slider-property"><img alt="" src="[[++assets_url]]img/img03.jpg"></li>
-										</ol>
-
-										<div class="carousel-inner">
-											[[+resOutput]]
-
-											<div class="item"><img alt="[[+formatAddress]]" src="[[+primaryImagePath]]"></div>
-
-											<div class="item active"><img alt="" src="[[++assets_url]]img/img03.jpg"></div>
-										</div><a class="left carousel-control" data-slide="prev" href="#slider-property"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" data-slide="next" href="#slider-property"><span class="glyphicon glyphicon-chevron-right"></span></a>
-									</div>
+							<div class="col-md-12">
+								<h2>[[+streetName]]</h2>
+								<div class="detail-main-img">
+									[[+largeImages]]
+								</div>
+								<div class="detail-nav">
+									[[+smallImages]]
 								</div>
 							</div>
+						</div>
 						<div class="row">
 							[[if? &subject=`[[+featureList]]` &operator=`notempty` &then=`
 								<div class="col-md-6 col-sm-6">
@@ -48,11 +42,11 @@
 										<tr>
 											<td width="20%"><strong>ID</strong></td>
 											<td>[[+property_id]]</td>
-										  </tr>` 
+										</tr>` 
 										 &else=`` ]]
 										<tr>
 											<td><strong>Price</strong></td>
-											<td>[[+priceTypeLabel]] [[+outputAskingPrice]] [[+letFrequency]]</td>
+											<td>[[+outputAskingPrice]] [[+letFrequency]]</td>
 										</tr>
 										<tr>
 											<td><strong>Contract</strong></td>
@@ -161,11 +155,11 @@
 								</div>
 							</div>
 					</div><!-- break -->
-
-						<div class="tab-pane fade" id="location">
+<!-- Google Maps tab -->
+						<div class="tab-pane fade" id="map">
 								<div class="row">
 									<div class="col-md-12">
-										<div id="map-property">
+										<div class="map-property">
 											<script type="text/javascript">
 		var propertyMapData = [[+outputMapDataString]];
 											</script>
@@ -173,6 +167,17 @@
 									</div>
 								</div>
 						</div>
+<!-- Street View tab -->
+						<div class="tab-pane fade" id="street-view">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="streetview-property">
+										<!-- Street View script here -->
+										</div>
+									</div>
+								</div>
+						</div>
+<!-- Contact form tab -->
 
 						
 						<div class="tab-pane fade" id="contact">
@@ -264,9 +269,13 @@
 		  <a href="#" data-toggle="modal" data-target="#sendFriend"><i class="fa fa-envelope"></i> Send to a friend</a>
 		</div>
 		<!-- break -->
-		<div class="widget-white favorite">
+		[[!if?&subject=`[[+escpHrId]]`
+					&operator=`!=`
+					&then=`<div class="widget-white favorite">
 		  <a href="#" data-toggle="modal" data-target="#espchr"><i class="fa fa-book"></i> Home Report</a>
-		</div>
+		</div>`
+					&else=``
+					]]
 		<!-- break -->
 		[[!if?&subject=`[[+brochurePathPublic]]`
 					&operator=`!=`
@@ -284,16 +293,12 @@
 					&else=``
 					]]
 		<!-- break -->
-		[[!if?&subject=`[[+epcDocPathPublic]]`
-					&operator=`!=`
-					&then=`<div class="widget-white favorite">
-		  <a href="[[+epcDocPathPublic]]"><i class="fa fa-sort-amount-asc"></i> EPC ([[+epcBand]])</a>
-		</div>`
-					&else=``
-					]]
+		<div class="widget-white favorite">
+		  <a href="[[+epcDocPathPublic]]"><i class="fa fa-sort-amount-asc"></i> EPC</a>
+		</div>
 		<!-- break -->
 		<div class="widget-white favorite">
-		  <a href="#bookViewing" data-toggle="modal" data-target="#bookViewing"><i class="fa fa-calendar"></i> Book a viewing</a>
+		  <a href="#" data-toggle="modal" data-target="#bookViewing"><i class="fa fa-calendar"></i> Book a viewing</a>
 		</div>
 
 		<!------ Send to Friend form ------>
@@ -372,8 +377,22 @@
 		</div>
 
 		<!------- Book a Viewing -------->
-		<!-- MOVED TO BDP CHUNK IN SNIPPET FOLDER 	-->
-		
+		<div class="modal fade" id="bookViewing" tabindex="-1" role="dialog" aria-labelledby="bookViewing" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Book a Viewing</h4>
+					</div>
+					<div class="modal-body">
+						The Book a Viewing form loads in here...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- <div class="widget widget-sidebar widget-white">
 		  <div class="widget-header">
 			<h3>Recent Property</h3>
@@ -393,6 +412,18 @@
 		  </div>    
 		  <ul class="list-check">
 			[[ +pTypeOptions ]]
+		  </ul>
+		</div> -->
+		<!-- break -->
+		<!-- <div class="widget widget-sidebar widget-white">
+		  <div class="widget-header">
+			<h3>Top Agents</h3>
+		  </div>    
+		  <ul>
+			<li><a href="#">John Doe</a></li>
+			<li><a href="#">Christoper Drew</a></li>
+			<li><a href="#">Jane Doe</a></li>
+			<li><a href="#">Jeny</a></li>
 		  </ul>
 		</div> -->
 		<!-- break -->
