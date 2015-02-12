@@ -61,6 +61,7 @@ function getProperties($sQuery=0){
 		
 	}
 	catch(Exception $e){
+		$this->runReport(true,true);
 		$this->logApiError($e);
 	}
 	//return the response

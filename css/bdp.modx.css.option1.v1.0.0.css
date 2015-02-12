@@ -58,7 +58,7 @@
 	width: auto;
 	max-width: 80%;
 	padding: 8px 16px;
-	background: #00423B;
+	background: #919191;
 	color: #fff;
 	text-align: center;
 	font-size: 18px;
@@ -81,7 +81,7 @@
 .bds-property-features{
 	display: block;
 	padding: 5px 10px;
-	background: #00423B;
+	background: #919191;
 	color: #fff;
 }
 
@@ -165,7 +165,7 @@
 	width: 50%;
 	padding: 8px 12px;
 	text-align: center;
-	background: #00423B;
+	background: #919191;
 	font-size: 18px;
 	color: rgba(0,0,0,.25);
 	overflow: hidden;
@@ -174,7 +174,7 @@
 .bds-property-footer a:hover,
 .bds-property-footer a:focus{
 	color: #eee;
-	background: #00423B;
+	background: #919191;
 	overflow: hidden;
 	outline: none;
 }

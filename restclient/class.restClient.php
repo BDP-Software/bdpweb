@@ -268,7 +268,7 @@ class RestClient {
 		//BD modification to support json posts
 		//17/03/13
 		if($client->info->http_code > 399){
-			throw new Exception($client->response,$client->info->http_code);
+			//throw new Exception($client->response,$client->info->http_code);
 		}
 		if($fail){
 			$this->errorCode = $client->info->http_code;

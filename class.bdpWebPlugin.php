@@ -71,9 +71,13 @@ var $modeMap = array(
 */
 function startUp(){
 	
-	//incluse the config file
-	include($incPath . 'cfg.php');
 	
+	//set the includes path
+	$incPath = MODX_BASE_PATH .'assets/snippets/';
+	
+	//include the config file
+	include($incPath . 'bdpweb_cfg/cfg.php');
+
 	//class map
 	$classMap = array(
 		'defaultMapZoom',
@@ -82,7 +86,7 @@ function startUp(){
 		'defaultStreetViewPitch',
 		'defauldMapType',
 		'detailPageId',
-		'resPageIdSales',
+		'resPageId',
 		'resPageIdLettings',
 		'chunkFolder',
 		'imgTpls'
@@ -525,7 +529,8 @@ function searchForm(){
 		'minBedOptions'=>$this->minBedOptions,
 		'maxBedOptions'=>$this->maxBedOptions,
 		'pTypeOptions'=>$this->pTypeOptions,
-		'formActionPath'=>$this->modx->makeUrl($this->resPageId,'','','full')
+		'formActionPath'=>$this->modx->makeUrl($this->resPageId,'','','full'),
+		'formActionPathLettings'=>$this->modx->makeUrl($this->resPageIdLettings,'','','full')
 	));	
 	
 	return $display;
