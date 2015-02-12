@@ -20,24 +20,24 @@
 
 /* Home page property listing */
 
-.property-container{
+.bds-property-container{
 	margin-bottom: 30px;
 	background: #fff;
 	border: 1px solid #eee;
 }
 
-.property-image{
+.bds-property-image{
 	position: relative;
 	overflow: hidden;
 }
 
-.property-image img{
+.bds-property-image img{
 	max-width: 100%;
 	width: 100%;
 	height: auto;
 }
 
-.property-status{
+.bds-property-status{
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -50,7 +50,7 @@
 	color: #fff;
 }
 
-.property-price{
+.bds-property-price{
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -66,37 +66,37 @@
 	font-weight: 600;
 }
 
-.property-price h4{
+.bds-property-price h4{
 	font-size: 14px;
 	line-height: 20px;
 	margin: 0 0 5px;
 	font-weight: 400;
 }
 
-.property-price small{
+.bds-property-price small{
 	font-size: 13px;
 	font-weight: 400;
 }
 
-.property-features{
+.bds-property-features{
 	display: block;
 	padding: 5px 10px;
 	background: #00423B;
 	color: #fff;
 }
 
-.property-features span{
+.bds-property-features span{
 	padding: 2px 5px;
 	font-size: 13px;
 }
 
-.property-content{
+.bds-property-content{
 	padding: 10px 15px;
 	min-height: 110px;
 }
 
-.property-content h3,
-.property-text h3{
+.bds-property-content h3,
+.bds-property-text h3{
 	display: block;
 	margin-bottom: 20px;
 	font-size: 20px;
@@ -104,48 +104,48 @@
 	font-weight: 600;
 }
 
-.property-content h3 small,
-.property-text h3 small{
+.bds-property-content h3 small,
+.bds-property-text h3 small{
 	display: block;
 	margin-top: 10px;
 	font-size: 13px;
 	font-style: italic;
 }
 
-.property-content-list{
+.bds-property-content-list{
 	display: table;
 }
 
-.property-image-list{
+.bds-property-image-list{
 	position: relative;
 	width: 50%;
 	display: table-cell;
 	vertical-align: top;
 }
 
-.property-image-list img{
+.bds-property-image-list img{
 	max-width: 100%;
 	width: 100%;
 	height: auto;
 }
 
-.property-image-list .property-status{
+.bds-property-image-list .property-status{
 	position: absolute;
 	right: 0;
 	bottom: 35px;
 }
 
-.property-image-list .property-footer a{
+.bds-property-image-list .property-footer a{
 	background: #d9dae9;
 	color: #898ba2;
 }
 
-.property-image-list .property-footer a:hover{
+.bds-property-image-list .property-footer a:hover{
 	background: #898ba2;
 	color: #d9dae9;
 }
 
-.property-text{
+.bds-property-text{
 	position: relative;
 	width: 50%;
 	display: table-cell;
@@ -153,14 +153,14 @@
 	vertical-align: top;
 }
 
-.property-footer{
+.bds-property-footer{
 	position: relative;
 	display: table;
 	width: 100%;
 	padding: 0;
 }
 
-.property-footer a{
+.bds-property-footer a{
 	display: table-cell;
 	width: 50%;
 	padding: 8px 12px;
@@ -171,8 +171,8 @@
 	overflow: hidden;
 }
 
-.property-footer a:hover,
-.property-footer a:focus{
+.bds-property-footer a:hover,
+.bds-property-footer a:focus{
 	color: #eee;
 	background: #00423B;
 	overflow: hidden;
