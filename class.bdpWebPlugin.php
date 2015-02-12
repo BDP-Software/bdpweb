@@ -72,7 +72,7 @@ var $modeMap = array(
 function startUp(){
 	
 	//incluse the config file
-	include($incPath . 'cfg.php');
+	include($incPath . '../bdpweb_cfg/cfg.php');
 	
 	//class map
 	$classMap = array(
