@@ -72,7 +72,7 @@ var $modeMap = array(
 function startUp(){
 	
 	//incluse the config file
-	include($incPath . '../bdpweb_cfg/cfg.php');
+	include($incPath . 'cfg.php');
 	
 	//class map
 	$classMap = array(
@@ -83,7 +83,9 @@ function startUp(){
 		'defauldMapType',
 		'detailPageId',
 		'resPageIdSales',
-		'resPageIdLettings'
+		'resPageIdLettings',
+		'chunkFolder',
+		'imgTpls'
 	);
 	//setup the plugin
 	foreach($classMap as $key => $map){
@@ -195,7 +197,26 @@ function applyDetailLogic($prop){
 	
 	
 	//set the image carousel
-	$prop = $this->grabDetailImages($prop);
+	//$prop = $this->grabDetailImages($prop);
+	foreach($prop['images'] as $key => $image){
+		if(is_array($this->imgTpls)){
+			foreach($this->imgTpls as $imgKey => $imgTpl){
+				if(!array_key_exists($imgKey,$prop)){
+					$prop[$imgKey] = '';
+				}
+				$prop[$imgKey] .= $this->processTpl('',$imgTpl,$image);
+			}
+			//echo $imgKey .' :: '. $prop[$imgKey]; exit;
+		}
+		else{
+			if(!array_key_exists('imgString',$prop)){
+				$prop['imgString'] = '';
+			}
+			
+			$prop['imgString'] .= $this->processTpl('','imgstring.html',$image);
+		}
+	}
+	
 	
 	//set the form handler url
 	$prop['formHandlePath'] = $this->modx->makeUrl($this->enqDocId);
@@ -204,6 +225,7 @@ function applyDetailLogic($prop){
 }
 
 /*
+* @depreciated 01/12/2014
  * grabs and creates the images string
 */
 function grabDetailImages($prop){
@@ -344,12 +366,12 @@ function hReport(){
  * runs the search form stuff
 */
 function searchForm(){
-	$this->maxPrice = 590000;
+	$this->maxPrice = 1490000;
 	$this->bedRoomsMax = 6;
 	
 	//set the form fields
 	//minPriceOPtions
-	$priceOptions = '0,50000,75000,100000,125000,150000,175000,200000,225000,250000,275000,300000,325000,350000,400000,450000,500000,600000,700000,800000,900000,1000000,1250000,1500000,2000000,2500000,3000000';
+	$priceOptions = '0,50000,75000,100000,125000,150000,175000,200000,225000,250000,275000,300000,325000,350000,400000,450000,500000,600000,700000,800000,900000,1000000,1250000,1500000,2000000,2500000,3000000,3500000,4000000,4500000,5000000,6000000,7500000,10000000,15000000,20000000,30000000,40000000,50000000,75000000,100000000,150000000';
 	//set the price array
 	$priceArr = explode(',',$priceOptions);
 	//loop the array and create the options - min then max
@@ -497,7 +519,7 @@ function searchForm(){
 	
 	
 	//integrate the outer template	
-	$display = $this->processTpl($this->tpl,'tpl',array(
+	$display = $this->processModeTpl($this->tpl,'tpl',array(
 		'minPriceOptions'=>$this->minPriceOptions,
 		'maxPriceOptions'=>$this->maxPriceOptions,
 		'minBedOptions'=>$this->minBedOptions,
@@ -551,15 +573,29 @@ function prepareCurrency($val=0,$decPlaces = 2){
 
 
 /**
+ * processes a tpl based on a mode
+*/
+function processModeTpl($tpl,$tplKey,$data){
+	return $this->processTpl($tpl,$this->modeData[$tplKey],$data);
+}
+
+/**
  * processes the templates and checks for a fallback 'default' alternative
 */
-function processTpl($tpl,$tplKey,$data){
+function processTpl($tpl,$tplFile,$data){
 	if($tpl){
 		$display = $this->modx->getChunk($tpl,$data);	
 	}
-	elseif($this->modeData[$tplKey]){
+	elseif($tplFile){
+		$content = false;
 		//echo 'File: '. $this->modeData[$tplKey];
-		$content = file_get_contents(MODX_BASE_PATH . $this->defTplPath . $this->modeData[$tplKey]);
+		if($this->chunkFolder){
+			//echo "trying to get content from here: ". MODX_BASE_PATH . $this->defTplPath . $this->chunkFolder .'/'. $this->modeData[$tplKey]; 
+			$content = file_get_contents(MODX_BASE_PATH . $this->defTplPath . $this->chunkFolder .'/'. $tplFile);
+		}
+		if(!$content){
+			$content = file_get_contents(MODX_BASE_PATH . $this->defTplPath . $tplFile);
+		}
 		$chunk = $this->modx->newObject('modChunk');
 		$display = $chunk->process($data, $content);
 	}
@@ -615,7 +651,7 @@ function searchResults(){
 			$prop = $this->applyLogic($prop);
 						
 			//$display .= $key .'_'. $prop['streetName'];
-			$resultsOutput .= $this->processTpl($this->tpl,'tpl',$prop);	
+			$resultsOutput .= $this->processModeTpl($this->tpl,'tpl',$prop);	
 		}
 	}
 	else{
@@ -648,7 +684,7 @@ function searchResults(){
 	//echo 'Mode: '. $this->mode;
 	
 	//integrate the outer template
-	$display = $this->processTpl($this->outerTpl,'outerTpl',array(
+	$display = $this->processModeTpl($this->outerTpl,'outerTpl',array(
 		'resTotal'=>$props['nRes'],
 		'resOutput'=>$resultsOutput,
 		'orderingFields'=>$orderingFields,
@@ -693,7 +729,7 @@ function detailsPage(){
 	}
 	
 	//integrate the outer template
-	$display = $this->processTpl($this->tpl,'tpl',$prop);	
+	$display = $this->processModeTpl($this->tpl,'tpl',$prop);	
 	
 	return $display;
 }

@@ -3,16 +3,16 @@
 	  <div class="property-image">
 	    <a href="[[+detailPath]]"><img class="thumb" src="[[+imagePath]]&w=343&h=228&q=80" alt="[[+districtName]]"/></a>
 	    <div class="property-price">
-	      [[!if?
+<!--	      [[!if?
 	  		&subject=`[[+districtName]]`
 	  		&operator=`!=`
 	  		&then=`<h4>[[+districtName]]</h4>`
 	  		&else=`<h4>[[+town]]</h4>`
-	  	]]
+	  	]] -->
 	      <span>[[+outputAskingPrice]] [[+letFrequency]]</span>
 	    </div>
 	    <div class="property-status">
-	      <span>For Sale</span>
+	      <span>[[+sellingStatus]]</span>
 	    </div>
 	  </div>
 	  <div class="property-features">
@@ -30,7 +30,7 @@
 	    	&subject=`[[+espcDistrict]]`
 	    	&operator=`!=`
 	    	&then=`[[+espcDistrict]]`
-	    	&else=``
+	    	&else=`[[+streetName]]<br>[[+town]]`
 	    ]]
 	     </a> <small>[[+pType]]</small></h3> 
 	  </div>

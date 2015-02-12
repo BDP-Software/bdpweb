@@ -1,5 +1,11 @@
-# BDP MODx Snippet
+# BDP MOdx Plugin v1.0.0 
 
-BDP is estate agency software and this snippet enables MDOx CMS to use the BDP API to display property listings on a public-facing website.
+Create snippet in Modx Installation
 
-This is under development and may not function fully. BDP accepts no liability for the failure of this code to function. Whilst we will endeavour to update this code it comes with NO WARRANTY. Please report all issues and update it for the benefit of all.
+
+Include BDP JS File, ideally in the footer
+Include CSS File, in the header
+
+Include Dependancies:-
+	Google Maps API V3
+	Slick Slider - https://github.com/kenwheeler/slick
