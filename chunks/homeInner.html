@@ -1,8 +1,8 @@
 <div class="col-md-3 col-sm-6 col-xs-12">
-	<div class="property-container [[+ extraClass ]]">
-	  <div class="property-image">
-	    <a href="[[+detailPath]]"><img class="thumb" src="[[+imagePath]]&w=343&h=228&q=80" alt="[[+districtName]]"/></a>
-	    <div class="property-price">
+	<div class="bds-property-container [[+ extraClass ]]">
+	  <div class="bdp-property-image">
+	    <a href="[[+detailPath]]"><img class="bds-thumb" src="[[+imagePath]]&w=343&h=228&q=80" alt="[[+districtName]]"/></a>
+	    <div class="bds-property-price">
 	      [[!if?
 	  		&subject=`[[+districtName]]`
 	  		&operator=`!=`
@@ -11,11 +11,11 @@
 	  	]]
 	      <span>[[+outputAskingPrice]] [[+letFrequency]]</span>
 	    </div>
-	    <div class="property-status">
+	    <div class="bds-property-status">
 	      <span>For Sale</span>
 	    </div>
 	  </div>
-	  <div class="property-features">
+	  <div class="bds-property-features">
 	   [[!if?
 	  		&subject=`[[!+sqmHouse]]`
 	  		&operator=`!=`
@@ -25,7 +25,7 @@
 	    <span><i class="fa fa-hdd-o"></i> [[+bedRooms]] Bed</span>
 	    <span><i class="fa fa-male"></i> [[+bathRooms]] Bath</span>
 	  </div>
-	  <div class="property-content">
+	  <div class="bds-property-content">
 	    <h3><a href="[[+detailPath]]">[[if?
 	    	&subject=`[[+espcDistrict]]`
 	    	&operator=`!=`
