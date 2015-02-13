@@ -186,3 +186,9 @@
 .bdd-detailCarousel div{
 	padding: 0 5px 0 5px;
 }
+
+/* Google Map */
+.bdd-detailMaps{
+	height:500px;
+}
+
