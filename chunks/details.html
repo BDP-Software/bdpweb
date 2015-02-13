@@ -8,7 +8,7 @@
 						<a data-toggle="tab" href="#detail"><i class="fa fa-university"></i> Property Detail</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#map" class="bdf-mapTrigger" ><i class="fa fa-map-marker"></i> Map</a>
+						<a data-toggle="tab" href="#map"  ><i class="fa fa-map-marker"></i> Map</a>
 					</li>
 					<li class="bdf-streetViewHide">
 						<a data-toggle="tab" href="#street-view"><i class="fa fa-road"></i> Street View</a>
@@ -193,7 +193,6 @@
 										[[if? &subject=`[[+staffNeg_firstName]]` &operator=`notempty` &then=`
 
 										<div class="team-container team-dark">
-											<div class="team-image"><img alt="[[+staffNeg_firstName]] [[+staffNeg_lastName]]" src="[[+staffNeg_proPicParsed]]"></div>
 
 											<div class="team-description">
 												<h3>[[+staffNeg_firstName]] [[+staffNeg_lastName]]</h3>
@@ -232,27 +231,29 @@
 									</div>
 
 									<div class="col-md-6 col-sm-6">
-										<form>
+										<form class="bdf-enquiryForm">
+											<div class="bdf-errorMsg bdd-hide alert alert-danger" role="alert">
+												The fields marked require information:
+											</div>
 											<div class="form-group">
-												<label for="name">Name</label> <input class="form-control input-lg" placeholder="Enter name :" type="text">
+												<label for="name">Name</label> <input class="form-control input-lg" name="name" placeholder="Enter name :" type="text">
 											</div>
 
 											<div class="form-group">
-												<label for="email">Email address</label> <input class="form-control input-lg" placeholder="Enter email :" type="email">
+												<label for="email">Email address</label> <input class="form-control input-lg" name="email" placeholder="Enter email :" type="email">
 											</div>
 
 											<div class="form-group">
-												<label for="telp">Tel.</label> <input class="form-control input-lg" placeholder="Enter phone number :" type="text">
+												<label for="tel">Tel.</label> <input class="form-control input-lg" name="tel" placeholder="Enter phone number :" type="text">
 											</div>
 
 											<div class="form-group">
 												<label for="message">Message</label> 
-												<textarea class="form-control input-lg" placeholder="Type a message :" rows="7">
-		</textarea>
+												<textarea class="form-control input-lg" name="message" placeholder="Type a message :" rows="7"></textarea>
 											</div>
 
 											<div class="form-group">
-												<input class="btn btn-warning btn-lg" name="submit" type="submit" value="Send Message">
+												<input class="btn btn-warning btn-lg bdf-Submit" name="submit" type="submit" value="Send Message">
 											</div>
 										</form>
 									</div>

@@ -14,6 +14,18 @@ Clone this GitHub repo into your MODx assets/snippets directory
 Include BDP JS File, ideally in the footer
 Include CSS File, in the header
 
-Include Dependancies:-
+Theme Dependancies:-
 	Google Maps API V3
 	Slick Slider - https://github.com/kenwheeler/slick
+	Font Awesome
+	jQuery Validation	http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js
+Run the BDP Modx JS
+	Either put the following code in a script tag in the dom, or in a js file, ideally called in the footer.
+/*
+ * jquery on document ready functions
+*/
+$(document).ready(function(){
+	var bdpModX = new bdpModXCore({});	
+});
+
+	
