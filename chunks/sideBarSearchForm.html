@@ -14,13 +14,8 @@
 		      <div class="col-md-12">
 				  <form role="form" class="advance-search" method="post" action="[[+formActionPath]]" >
 				    <div class="form-group">
-				      <label for="location">Location</label>
-				      <select class="form-control">
-				        <option>Edinburgh</option>
-				        <option>Doral</option>
-				        <option>Little Havana</option>
-				        <option>Perrine</option>
-				      </select>
+				      <label for="keysearch">Keyword</label>
+				      <input class="form-control" name="keysearch" value="[[+keysearch_Value]]" placeholder="street name, postcode, area"/>
 				    </div>
 				    <div class="form-group">
 				      <label for="type">Property Type</label>
@@ -30,19 +25,19 @@
 				    </div>
 				    <div class="form-group">
 				      <label for="beds">Beds</label>
-				      <select class="form-control">
+				      <select class="form-control" name="bedRoomsMin">
 				        [[+minBedOptions]]
 				      </select>
 				    </div>
 				    <div class="form-group">
 				      <label for="min-price">Min Price</label>
-				      <select class="form-control">
+				      <select class="form-control" name="pricefrom">
 				        [[+minPriceOptions]]
 				      </select>
 				    </div>
 				    <div class="form-group">
 				      <label for="max-price">Max Price</label>
-				      <select class="form-control">
+				      <select class="form-control" name="priceto">
 				        [[+maxPriceOptions]]
 				      </select>
 				    </div>
@@ -56,35 +51,30 @@
 		      <div class="col-md-12">
 				  <form role="form" class="advance-search" method="post" action="[[+formActionPathLettings]]" >
 				    <div class="form-group">
-				      <label for="location">Location</label>
-				      <select class="form-control">
-				        <option>Miami</option>
-				        <option>Doral</option>
-				        <option>Little Havana</option>
-				        <option>Perrine</option>
-				      </select>
+				      <label for="keysearch">Keyword</label>
+				      <input class="form-control" name="keysearch" value="[[+keysearch_Value]]" placeholder="street name, postcode, area"/>
 				    </div>
 				    <div class="form-group">
 				      <label for="type">Property Type</label>
-				      <select class="form-control">
+				      <select class="form-control" name="">
 				        [[+pTypeOptions]]
 				      </select>
 				    </div>
 				    <div class="form-group">
 				      <label for="beds">Beds</label>
-				      <select class="form-control">
+				      <select class="form-control" name="bedRoomsMin">
 				        [[+minBedOptions]]
 				      </select>
 				    </div>
 				    <div class="form-group">
 				      <label for="min-price">Min Price</label>
-				      <select class="form-control">
+				      <select class="form-control" name="pricefrom">
 				        [[+minPriceOptions]]
 				      </select>
 				    </div>
 				    <div class="form-group">
 				      <label for="max-price">Max Price</label>
-				      <select class="form-control">
+				      <select class="form-control" name="priceto">
 				        [[+maxPriceOptions]]
 				      </select>
 				    </div>
