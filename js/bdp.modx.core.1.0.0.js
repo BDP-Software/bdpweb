@@ -24,16 +24,57 @@ $(document).ready(function(){
 			//relocate the user
 			window.location.href = resPath;
 		});
-		
 	});	
 	
-	$('.detail-main-img').slick({
+	/**
+	 * Main Detail Page Image 
+	*/
+	$('.bdf_detailMainImg').slick({
 	    slidesToShow: 1,
 	    slidesToScroll: 1,
 	    fade: true,
 	    arrows: true,
-	    asNavFor: '.detail-nav'
+	    asNavFor: '.bdf_detailCarousel'
 	});
+	/**
+	 * Detail Page Carousel Images
+	*/
+	$('.bdf_detailCarousel').slick({
+	    slidesToShow: 4,
+	    slidesToScroll: 4,
+	    asNavFor: '.bdf_detailMainImg',
+	    arrows: false,
+	    centerMode: true,
+	    centerPadding: '30px',
+	    focusOnSelect: true,
+	    responsive: [
+	    {
+	      breakpoint: 1024,
+	      settings: {
+	        slidesToShow: 3,
+	        slidesToScroll: 3,
+	        centerPadding: '20px'
+	      }
+	    },
+	    {
+	      breakpoint: 600,
+	      settings: {
+	        slidesToShow: 3,
+	        slidesToScroll: 2,
+	        centerPadding: '15px'
+	      }
+	    },
+	    {
+	      breakpoint: 480,
+	      settings: {
+	        slidesToShow: 2,
+	        slidesToScroll: 1,
+	        centerPadding: '10px'
+	      }
+	    }
+	  ]
+	});
+	
 	
 });
 	

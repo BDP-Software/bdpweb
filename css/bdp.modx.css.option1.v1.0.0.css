@@ -178,3 +178,11 @@
 	overflow: hidden;
 	outline: none;
 }
+
+
+/**
+ * Detail Page 
+*/
+.bds-detailCarousel div{
+	padding: 0 5px 0 5px;
+}
