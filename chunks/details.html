@@ -8,9 +8,9 @@
 						<a data-toggle="tab" href="#detail"><i class="fa fa-university"></i> Property Detail</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#map"><i class="fa fa-map-marker"></i> Map</a>
+						<a data-toggle="tab" href="#map" class="bdf-mapTrigger" ><i class="fa fa-map-marker"></i> Map</a>
 					</li>
-					<li>
+					<li class="bdf-streetViewHide">
 						<a data-toggle="tab" href="#street-view"><i class="fa fa-road"></i> Street View</a>
 					</li>
 					<li>
@@ -22,11 +22,11 @@
 					<div class="tab-pane fade in active" id="detail">
 						<div class="row">
 							<div class="col-md-12">
-								<h2>[[+streetName]]</h2>
-								<div class="bdf_detailMainImg">
+								<h2 class="bdf-mapTitle">[[+streetName]]</h2>
+								<div class="bdf-detailMainImg">
 									[[+smallImages]]
 								</div>
-								<div class="bdf_detailCarousel bds-detailCarousel">
+								<div class="bdf-detailCarousel bdd-detailCarousel">
 									[[+smallImages]]
 								</div>
 							</div>
@@ -159,23 +159,22 @@
 					<div class="tab-pane fade" id="map">
 							<div class="row">
 								<div class="col-md-12">
-									<div id="bdf_propertyMap">
+									<div id="bdf-propertyMap" class="bdd-detailMap">
+									</div>
+								</div>
+							</div>
+					</div>
+					
+					<div class="tab-pane fade bdf-streetViewHide" id="street-view">
+							<div class="row">
+								<div class="col-md-12">
+									<div id="bdf-sView">
 										<script type="text/javascript">var propertyMapData = [[+outputMapDataString]];</script>
 									</div>
 								</div>
 							</div>
 					</div>
 					
-					<div class="tab-pane fade" id="street-view">
-							<div class="row">
-								<div class="col-md-12">
-									<div id="bdf_sView">
-										<script type="text/javascript">var propertyMapData = [[+outputMapDataString]];</script>
-									</div>
-								</div>
-							</div>
-					</div>
-
 						
 					<div class="tab-pane fade" id="contact">
 								<div class="row">
@@ -401,3 +400,4 @@
 		<!-- end:sidebar -->
 	</div>
 </div>
+<script type="text/javascript">var propertyMapData = [[+outputMapDataString]];</script>

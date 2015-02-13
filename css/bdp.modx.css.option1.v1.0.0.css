@@ -20,24 +20,24 @@
 
 /* Home page property listing */
 
-.bds-property-container{
+.bdd-property-container{
 	margin-bottom: 30px;
 	background: #fff;
 	border: 1px solid #eee;
 }
 
-.bds-property-image{
+.bdd-property-image{
 	position: relative;
 	overflow: hidden;
 }
 
-.bds-property-image img{
+.bdd-property-image img{
 	max-width: 100%;
 	width: 100%;
 	height: auto;
 }
 
-.bds-property-status{
+.bdd-property-status{
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -50,7 +50,7 @@
 	color: #fff;
 }
 
-.bds-property-price{
+.bdd-property-price{
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -66,37 +66,37 @@
 	font-weight: 600;
 }
 
-.bds-property-price h4{
+.bdd-property-price h4{
 	font-size: 14px;
 	line-height: 20px;
 	margin: 0 0 5px;
 	font-weight: 400;
 }
 
-.bds-property-price small{
+.bdd-property-price small{
 	font-size: 13px;
 	font-weight: 400;
 }
 
-.bds-property-features{
+.bdd-property-features{
 	display: block;
 	padding: 5px 10px;
 	background: #919191;
 	color: #fff;
 }
 
-.bds-property-features span{
+.bdd-property-features span{
 	padding: 2px 5px;
 	font-size: 13px;
 }
 
-.bds-property-content{
+.bdd-property-content{
 	padding: 10px 15px;
 	min-height: 110px;
 }
 
-.bds-property-content h3,
-.bds-property-text h3{
+.bdd-property-content h3,
+.bdd-property-text h3{
 	display: block;
 	margin-bottom: 20px;
 	font-size: 20px;
@@ -104,48 +104,48 @@
 	font-weight: 600;
 }
 
-.bds-property-content h3 small,
-.bds-property-text h3 small{
+.bdd-property-content h3 small,
+.bdd-property-text h3 small{
 	display: block;
 	margin-top: 10px;
 	font-size: 13px;
 	font-style: italic;
 }
 
-.bds-property-content-list{
+.bdd-property-content-list{
 	display: table;
 }
 
-.bds-property-image-list{
+.bdd-property-image-list{
 	position: relative;
 	width: 50%;
 	display: table-cell;
 	vertical-align: top;
 }
 
-.bds-property-image-list img{
+.bdd-property-image-list img{
 	max-width: 100%;
 	width: 100%;
 	height: auto;
 }
 
-.bds-property-image-list .property-status{
+.bdd-property-image-list .property-status{
 	position: absolute;
 	right: 0;
 	bottom: 35px;
 }
 
-.bds-property-image-list .property-footer a{
+.bdd-property-image-list .property-footer a{
 	background: #d9dae9;
 	color: #898ba2;
 }
 
-.bds-property-image-list .property-footer a:hover{
+.bdd-property-image-list .property-footer a:hover{
 	background: #898ba2;
 	color: #d9dae9;
 }
 
-.bds-property-text{
+.bdd-property-text{
 	position: relative;
 	width: 50%;
 	display: table-cell;
@@ -153,14 +153,14 @@
 	vertical-align: top;
 }
 
-.bds-property-footer{
+.bdd-property-footer{
 	position: relative;
 	display: table;
 	width: 100%;
 	padding: 0;
 }
 
-.bds-property-footer a{
+.bdd-property-footer a{
 	display: table-cell;
 	width: 50%;
 	padding: 8px 12px;
@@ -171,8 +171,8 @@
 	overflow: hidden;
 }
 
-.bds-property-footer a:hover,
-.bds-property-footer a:focus{
+.bdd-property-footer a:hover,
+.bdd-property-footer a:focus{
 	color: #eee;
 	background: #919191;
 	overflow: hidden;
@@ -183,6 +183,6 @@
 /**
  * Detail Page 
 */
-.bds-detailCarousel div{
+.bdd-detailCarousel div{
 	padding: 0 5px 0 5px;
 }

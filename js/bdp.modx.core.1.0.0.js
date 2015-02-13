@@ -7,16 +7,34 @@
  ** Slick Slider - https://github.com/kenwheeler/slick
 */
     
-/*
- * jquery on document ready functions
+/**
+ * BDP ModX Core
 */
-$(document).ready(function(){	
+function bdpModXCore(options){
+	
+	//define default settings
+	var settings = {
+		'searchFormHandle' : '.bdf-searchForm', //search form handle
+		'searchFormButtonHandle' : '.bdf-Submit', //search form submit button handle
+		'detailsMapId' : 'bdf-propertyMap', //id of the map ont he details page
+		'detailsStreetViewId' : 'bdf-sView', //id of the streetview container
+		'detailMainImgCarouselHandle' : '.bdf-detailMainImg', //main image carousel handle
+		'detailThumbsCarouselHandle' : '.bdf-detailCarousel', //thumbnail carousel handle
+		'streetviewHideHandle' : '.bdf-streetViewHide', //anything with this handle is hidden when streetview can't find data
+		'mapTitleHandle' : '.bdf-mapTitle', //contents of this tag populates the map marker title
+		'markerIconUrl' : false, //sets a custom map marker icon
+		'mapTriggerHandle' : '.bdf-mapTrigger'
+	};
+	
+	//integrate the options
+	$.extend(settings,options,true);
+	
 	/**
 	 * search forms
 	*/
-	$('.bdf_searchForm').each(function(){
+	$(settings.searchFormHandle).each(function(){
 		var form = $(this);
-		$('.bdf_Submit',form).click(function(e){
+		$(settings.searchFormButtonHandle,form).click(function(e){
 			e.preventDefault();
 			var sendData = form.serialize();
 			var actionPath = form.attr('action');
@@ -29,20 +47,20 @@ $(document).ready(function(){
 	/**
 	 * Main Detail Page Image 
 	*/
-	$('.bdf_detailMainImg').slick({
+	$(settings.detailMainImgCarouselHandle).slick({
 	    slidesToShow: 1,
 	    slidesToScroll: 1,
 	    fade: true,
 	    arrows: true,
-	    asNavFor: '.bdf_detailCarousel'
+	    asNavFor: settings.detailThumbsCarouselHandle
 	});
 	/**
 	 * Detail Page Carousel Images
 	*/
-	$('.bdf_detailCarousel').slick({
+	$(settings.detailThumbsCarouselHandle).slick({
 	    slidesToShow: 4,
 	    slidesToScroll: 4,
-	    asNavFor: '.bdf_detailMainImg',
+	    asNavFor: settings.detailMainImgCarouselHandle,
 	    arrows: false,
 	    centerMode: true,
 	    centerPadding: '30px',
@@ -75,11 +93,77 @@ $(document).ready(function(){
 	  ]
 	});
 	
+	/**
+	 * Google Maps
+	*/
+	//console.log(propertyMapData);
+	//set the latlng object for the map centre
+	var latlngMap = new google.maps.LatLng(propertyMapData.mapCentreLat,propertyMapData.mapCentreLng);
+	//set the latlng object for the marker
+	var latlngMarker = new google.maps.LatLng(propertyMapData.markerLat,propertyMapData.markerLng);
+	//set the map options
+	var myOptions = {
+		zoom: propertyMapData.mapZoom,
+		center: latlngMap,
+		mapTypeId: google.maps.MapTypeId[propertyMapData.mapType]
+	};
 	
+	var map = new google.maps.Map(document.getElementById(settings.detailsMapId),myOptions);
+				
+	//set the marker image	
+	var markerData = {
+		position: latlngMarker, 
+		map: map, 
+		title:$(settings.mapTitleHandle).html(),
+		draggable: false
+	};
+	if(settings.markerIconUrl){
+		markerData[icon] = settings.markerIconUrl;
+		
+	}
+	
+	
+	var marker = new google.maps.Marker(markerData);
+	/**
+	var marker = new google.maps.Marker({
+		position: latlngMap, 
+		map: map		
+	});
+	*/			
+	//street view code goes here
+	var latlngSView = new google.maps.LatLng(propertyMapData.sViewLat,propertyMapData.sViewLng);
+	var panoramaOptions = {
+		addressControl : false,
+		position: latlngSView,
+		pov: {
+			heading: propertyMapData.sViewHeading,
+			pitch: propertyMapData.sViewPitch,
+			zoom: propertyMapData.sViewZoom
+		}
+	};
+	var panorama = new  google.maps.StreetViewPanorama(document.getElementById(settings.detailsStreetViewId), panoramaOptions);
+	var client = new google.maps.StreetViewService();
+	client.getPanoramaByLocation(panoramaOptions.position, 50, function(data,status){
+		if(status == 'ZERO_RESULTS'){
+			$(settings.detailsStreetViewId).hide();
+			$(settings.streetviewHideHandle).hide();
+		}
+	});
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		e.target // newly activated tab
+		e.relatedTarget // previous active tab
+		//resize the google map on tab load 
+		google.maps.event.trigger(map, 'resize');
+		map.setCenter(latlngMap);
+	});
+}
+
+/*
+ * jquery on document ready functions
+*/
+$(document).ready(function(){
+	var bdpModX = new bdpModXCore();	
 });
-	
-	
-	
 	
 	
 	/* map contact 
