@@ -220,7 +220,7 @@ function applyDetailLogic($prop){
 			$prop['imgString'] .= $this->processTpl('','imgstring.html',$image);
 		}
 	}
-	
+	//var_dump($prop); exit;
 	
 	//set the form handler url
 	$prop['formHandlePath'] = $this->modx->makeUrl($this->enqDocId);
@@ -231,7 +231,7 @@ function applyDetailLogic($prop){
 /*
 * @depreciated 01/12/2014
  * grabs and creates the images string
-*/
+
 function grabDetailImages($prop){
 	
 	$prop['showImageCarousel'] = false;
@@ -246,6 +246,7 @@ function grabDetailImages($prop){
 	if($prop['images']){
 		$miniString = '';
 		$shadowString = '';
+		var_dump($prop['images']); exit;
 		foreach($prop['images'] as $key => $image){
 			//set the alt tag
 			//$altTag = ($image['altTag'] ? $image['altTag'] : 'image '. $key+1);
@@ -298,7 +299,7 @@ function grabDetailImages($prop){
 	}
 	return $prop;
 }
-
+*/
 
 /**
  * parses map data for a property

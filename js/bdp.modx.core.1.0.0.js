@@ -6,7 +6,42 @@
  ** Google Maps API V3
  ** Slick Slider - https://github.com/kenwheeler/slick
 */
-    /* map contact */
+    
+/*
+ * jquery on document ready functions
+*/
+$(document).ready(function(){	
+	/**
+	 * search forms
+	*/
+	$('.bdf_searchForm').each(function(){
+		var form = $(this);
+		$('.bdf_Submit',form).click(function(e){
+			e.preventDefault();
+			var sendData = form.serialize();
+			var actionPath = form.attr('action');
+			var resPath = actionPath + (actionPath.indexOf("?", 0) > -1 ? '&' : '?') + sendData;
+			//relocate the user
+			window.location.href = resPath;
+		});
+		
+	});	
+	
+	$('.detail-main-img').slick({
+	    slidesToShow: 1,
+	    slidesToScroll: 1,
+	    fade: true,
+	    arrows: true,
+	    asNavFor: '.detail-nav'
+	});
+	
+});
+	
+	
+	
+	
+	
+	/* map contact 
     $("#map").gmap3({
         map: {
             options: {
@@ -25,7 +60,7 @@
             }
          }
     });
-
+*/
 
     /* carousel single */
     $('#slider-property').carousel({
@@ -55,11 +90,5 @@
         });
     })
 	
-	$('.detail-main-img').slick({
-	    slidesToShow: 1,
-	    slidesToScroll: 1,
-	    fade: true,
-	    arrows: false,
-	    asNavFor: '.detail-nav'
-	});
+	
 	

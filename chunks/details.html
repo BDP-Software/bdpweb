@@ -18,25 +18,16 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade in active" id="detail">
 						<div class="row">
-								<div class="col-md-12">
-									<h2>[[+streetName]]</h2>
-									<div class="carousel slide" data-ride="carousel" id="slider-property">
-										<ol class="carousel-indicators">
-											<li class="active" data-slide-to="0" data-target="#slider-property">[[+tinyImageString]]</li>
-
-											<li class="active" data-slide-to="1" data-target="#slider-property"><img alt="" src="[[++assets_url]]img/img03.jpg"></li>
-										</ol>
-
-										<div class="carousel-inner">
-											[[+resOutput]]
-
-											<div class="item"><img alt="[[+formatAddress]]" src="[[+primaryImagePath]]"></div>
-
-											<div class="item active"><img alt="" src="[[++assets_url]]img/img03.jpg"></div>
-										</div><a class="left carousel-control" data-slide="prev" href="#slider-property"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" data-slide="next" href="#slider-property"><span class="glyphicon glyphicon-chevron-right"></span></a>
-									</div>
+							<div class="col-md-12">
+								<h2>[[+streetName]]</h2>
+								<div class="detail-main-img">
+									[[+smallImages]]
+								</div>
+								<div class="detail-nav">
+									[[+smallImages]]
 								</div>
 							</div>
+						</div>
 						<div class="row">
 							[[if? &subject=`[[+featureList]]` &operator=`notempty` &then=`
 								<div class="col-md-6 col-sm-6">
