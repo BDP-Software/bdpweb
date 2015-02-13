@@ -145,8 +145,18 @@ function bdpModXCore(options){
 	var client = new google.maps.StreetViewService();
 	client.getPanoramaByLocation(panoramaOptions.position, 50, function(data,status){
 		if(status == 'ZERO_RESULTS'){
+			if(console){
+				console.log('Unable to retrieve Streetview data, removing Streetview functionality');
+			}
 			$(settings.detailsStreetViewId).hide();
 			$(settings.streetviewHideHandle).hide();
+		}
+		else{
+			if(console){
+				console.log('Streetview should now appear');
+				
+			}
+			
 		}
 	});
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -155,6 +165,7 @@ function bdpModXCore(options){
 		//resize the google map on tab load 
 		google.maps.event.trigger(map, 'resize');
 		map.setCenter(latlngMap);
+		panorama.setVisible(true);
 	});
 }
 
@@ -165,27 +176,7 @@ $(document).ready(function(){
 	var bdpModX = new bdpModXCore();	
 });
 	
-	
-	/* map contact 
-    $("#map").gmap3({
-        map: {
-            options: {
-              center: [55.956357, -2.776160],
-              zoom: 12,
-              scrollwheel: false
-            }  
-         },
-        marker:{
-            latLng: [55.956357, -2.776160],
-            options: {
-             icon: new google.maps.MarkerImage(
-               "https://dl.dropboxusercontent.com/u/29545616/Preview/location.png",
-               new google.maps.Size(48, 48, "px", "px")
-             )
-            }
-         }
-    });
-*/
+
 
     /* carousel single */
     $('#slider-property').carousel({
