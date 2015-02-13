@@ -12,7 +12,7 @@
 		<div id="sales" class="tab-pane fade in active">
 		    <div class="row">
 		      <div class="col-md-12">
-				  <form role="form" class="advance-search" method="post" action="[[+formActionPath]]" >
+				  <form role="form" class="advance-search bdf_searchForm" method="post" action="[[+formActionPath]]">
 				    <div class="form-group">
 				      <label for="keysearch">Keyword</label>
 				      <input class="form-control" name="keysearch" value="[[+keysearch_Value]]" placeholder="street name, postcode, area"/>
@@ -41,7 +41,7 @@
 				        [[+maxPriceOptions]]
 				      </select>
 				    </div>
-				    <input type="submit" name="submit" value="Search" class="btn btn-warning btn-block">
+				    <input type="submit" name="submit" value="Search" class="btn btn-warning btn-block bdf_Submit">
 				  </form>
 		      </div>
 			</div>
@@ -49,7 +49,7 @@
 		<div id="lettings" class="tab-pane fade">
 		    <div class="row">
 		      <div class="col-md-12">
-				  <form role="form" class="advance-search" method="post" action="[[+formActionPathLettings]]" >
+				  <form role="form" class="advance-search bdf_searchForm" method="post" action="[[+formActionPathLettings]]" >
 				    <div class="form-group">
 				      <label for="keysearch">Keyword</label>
 				      <input class="form-control" name="keysearch" value="[[+keysearch_Value]]" placeholder="street name, postcode, area"/>
@@ -78,7 +78,7 @@
 				        [[+maxPriceOptions]]
 				      </select>
 				    </div>
-				    <input type="submit" name="submit" value="Search" class="btn btn-warning btn-block">
+				    <input type="submit" name="submit" value="Search" class="btn btn-warning btn-block bdf_Submit">
 				  </form>
 		      </div>
 		    </div>
