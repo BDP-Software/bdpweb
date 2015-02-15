@@ -188,6 +188,18 @@
 /**
  * Detail Page 
 */
+
+.sidebar .widget-white{
+	position: relative;
+	padding: 15px;
+	background: #fff;
+	margin-bottom: 30px !important;
+	border-bottom: 2px solid #ddd;
+}
+
+
+
+
 .bdd-detailCarousel div{
 	padding: 0 5px 0 5px;
 }
