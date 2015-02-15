@@ -266,17 +266,17 @@
 	<div class="col-md-3 col-md-pull-9 sidebar">
 		<!-- begin:sidebar -->
 		<!-- break -->
-		<div class="widget-white favorite">
+		<div class="bdd-detailButtons favorite">
 		  <a href="#" data-toggle="modal" data-target="#sendFriend"><i class="fa fa-envelope"></i> Send to a friend</a>
 		</div>
 		<!-- break -->
-		<div class="widget-white favorite">
+		<div class="bdd-detailButtons favorite">
 		  <a href="#" data-toggle="modal" data-target="#espchr"><i class="fa fa-book"></i> Home Report</a>
 		</div>
 		<!-- break -->
 		[[!if?&subject=`[[+brochurePathPublic]]`
 					&operator=`!=`
-					&then=`<div class="widget-white favorite">
+					&then=`<div class="bdd-detailButtons favorite">
 		  <a href="[[+brochurePathPublic]]"><i class="fa fa-newspaper-o"></i> Brochure</a>
 		</div>`
 					&else=``
@@ -284,7 +284,7 @@
 		<!-- break -->
 		[[!if?&subject=`[[+floorPlanPdfPathPublic]]`
 					&operator=`!=`
-					&then=`<div class="widget-white favorite">
+					&then=`<div class="bdd-detailButtons favorite">
 		  <a href="[[+floorPlanPdfPathPublic]]"><i class="fa fa-file-pdf-o"></i> PDF floor plan</a>
 					</div>`
 					&else=``
@@ -292,13 +292,13 @@
 		<!-- break -->
 		[[!if?&subject=`[[+epcDocPathPublic]]`
 					&operator=`!=`
-					&then=`<div class="widget-white favorite">
+					&then=`<div class="bdd-detailButtons favorite">
 		  <a href="[[+epcDocPathPublic]]"><i class="fa fa-sort-amount-asc"></i> EPC ([[+epcBand]])</a>
 		</div>`
 					&else=``
 					]]
 		<!-- break -->
-		<div class="widget-white favorite">
+		<div class="bdd-detailButtons favorite">
 		  <a href="#bookViewing" data-toggle="modal" data-target="#bookViewing"><i class="fa fa-calendar"></i> Book a viewing</a>
 		</div>
 
