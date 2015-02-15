@@ -18,7 +18,8 @@ function bdpModXCore(options){
 	//define default settings
 	var settings = {
 		'searchFormHandle' : '.bdf-searchForm', //search form handle
-		'submitHandle' : '.bdf-Submit', //search form submit button handle
+		'submitHandle' : '.bdf-Submit', //form submit button handle
+		'cancelHandle' : '.bdf-cancel', //form cancel button handle
 		'detailsMapId' : 'bdf-propertyMap', //id of the map ont he details page
 		'detailsStreetViewId' : 'bdf-sView', //id of the streetview container
 		'detailMainImgCarouselHandle' : '.bdf-detailMainImg', //main image carousel handle
@@ -28,6 +29,9 @@ function bdpModXCore(options){
 		'markerIconUrl' : false, //sets a custom map marker icon
 		'enquiryFormHandle' : '.bdf-enquiryForm',
 		'errorMsgHandle' : '.bdf-errorMsg',
+		'sendFriendFormHandle' : '.bdf-sendFriendForm',
+		'homeReportFormHandle' : '.bdf-homeReportForm',
+		'requestViewingFormHandle' : '.bdf-requestViewingForm',
 		'enquiryValidation' : {
 			rules : {
 				name : {
@@ -205,7 +209,48 @@ function bdpModXCore(options){
 		//check that the form is valid, if not show the error message
 		if($(settings.enquiryFormHandle).valid()){
 			//the form fields are valid, post to the server and display the response
-			console.log('The enquiry form should now send');
+			//console.log('The enquiry form should now send');
+			bDig.loadModal({
+				content : false,
+				template : 'assets/snippets/bdpweb/theme/jstemps/pleasewait.html',
+				timeOut : false,
+				tParams : {},
+				onComplete : function(){
+					//console.log('the modal should now have appeared');
+					$.ajax({
+						url : window.location.href,
+						type : 'POST',
+						data : {
+							formData : '1',
+							enqtype : 'denquiry'
+						},
+						success : function(data){
+							if(data.output){
+								
+								//load a modal with the success message
+								bDig.loadModal({
+									content : data.output,
+									onComplete : function(){
+										setTimeout(function(){
+											location.reload();
+										}, 2000);
+									},
+									tParams : {
+										modId : 'bdModal'
+									}
+									
+								});
+								
+							}
+							else{
+								if(console){
+									console.log('There was a problem submitting the form');
+								}
+							}
+						}
+					});
+				}
+			});
 		}
 		else{
 			$(settings.errorMsgHandle,settings.enquiryFormHandle).slideDown();
@@ -213,8 +258,116 @@ function bdpModXCore(options){
 		
 	});
 	
+	var sendFriendSetup = new popupFormHandle({
+		formHandle : settings.sendFriendFormHandle,
+		submitFlag : 'sendFriend',
+		formModalId : 'sendFriend'
+	});
 	
+	var homeReportSetup = new popupFormHandle({
+		formHandle : settings.homeReportFormHandle,
+		submitFlag : 'hreport',
+		formModalId : 'espchr'
+	});
 	
+	var requestViewingSetup = new popupFormHandle({
+		formHandle : settings.requestViewingFormHandle,
+		submitFlag : 'viewing',
+		formModalId : 'bookViewing'
+	});
+	
+	/**
+	 * handles popup forms
+	*/
+	function popupFormHandle(options){
+		
+		var formSettings = {
+			formHandle : '',
+			submitHandle : settings.submitHandle,
+			submitFlag : '',
+			errorMsgHandle : settings.errorMsgHandle,
+			formModalId : '',
+			validation : {
+				rules : {
+					name : {
+						required: true,
+					},
+					email : {
+						required: true,
+						email: true
+					},
+					tel : {
+						
+					},
+					message : {
+						
+					},
+				}
+				
+			}
+		};
+		
+		$.extend(formSettings,options,true);
+		
+		//set form validation (jQuery validation)
+		$(formSettings.formHandle).validate(formSettings.validation);
+		
+		//set the submit button
+		$(formSettings.submitHandle,formSettings.formHandle).click(function(e){
+			e.preventDefault();
+			//check that the form is valid, if not show the error message
+			if($(formSettings.formHandle).valid()){
+				//the form fields are valid, post to the server and display the response
+				//console.log('The enquiry form should now send');
+				$('#'+formSettings.formModalId).removeClass("fade").modal("hide");
+				bDig.loadModal({
+					content : false,
+					template : 'assets/snippets/bdpweb/theme/jstemps/pleasewait.html',
+					timeOut : false,
+					tParams : {},
+					onComplete : function(){
+						//console.log('the modal should now have appeared');
+						$.ajax({
+							url : window.location.href,
+							type : 'POST',
+							data : {
+								formData : '1',
+								enqtype : formSettings.submitFlag
+							},
+							success : function(data){
+								if(data.output){
+									
+									//load a modal with the success message
+									bDig.loadModal({
+										content : data.output,
+										onComplete : function(){
+											setTimeout(function(){
+												 $('#bdModal').modal('hide');
+											}, 2000);
+										},
+										tParams : {
+											modId : 'bdModal'
+										}
+										
+									});
+									
+								}
+								else{
+									if(console){
+										console.log('There was a problem submitting the form');
+									}
+								}
+							}
+						});
+					}
+				});
+			}
+			else{
+				$(formSettings.errorMsgHandle,formSettings.formHandle).slideDown();
+			}
+			
+		});
+	}
 	
 	
 }

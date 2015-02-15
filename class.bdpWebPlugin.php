@@ -228,78 +228,6 @@ function applyDetailLogic($prop){
 	return $prop;
 }
 
-/*
-* @depreciated 01/12/2014
- * grabs and creates the images string
-
-function grabDetailImages($prop){
-	
-	$prop['showImageCarousel'] = false;
-	//set the carousel string to blank by default
-	$prop['tinyImageString'] = '';
-		
-	//set a counter for the thumbnails outputted - counts the thumbnails that pass all checks
-	$thumbsCount = 0;
-	$outputCount = 0;
-	
-	//if property images have been found, loop through tehm creating the carousel list
-	if($prop['images']){
-		$miniString = '';
-		$shadowString = '';
-		var_dump($prop['images']); exit;
-		foreach($prop['images'] as $key => $image){
-			//set the alt tag
-			//$altTag = ($image['altTag'] ? $image['altTag'] : 'image '. $key+1);
-			
-			//grab the image path#
-			$imgPath = $image['url'];
-			$imgFile = basename($imgPath);
-			
-			//set the thumbnail path
-			$carouselPath = $imgPath . ($this->carouselThumbData ? '&'. $this->carouselThumbData : '') . '&fname=/'. $imgFile;
-						
-			//set the large image path
-			$largePath = $imgPath . ($this->detailImageData ? '&'. $this->detailImageData : '') . '&fname=/'. $imgFile;
-			if($outputCount == 0){
-				$prop['primaryImagePath'] = $largePath;
-			}
-			
-			
-			//set the popup image path
-			$popupPath = $imgPath .'&w=1024&q=80&fname=/'. $imgFile;
-			
-			//put the string together	
-			$miniString .= $this->liTag($this->aTag($this->imgTag($carouselPath,$altTag),$largePath));
-		
-			//create the large string
-			$largeString .= $this->liTag($this->aTag($this->imgTag($largePath,$altTag),$popupPath .'" rel="detailimage'));
-			
-			//create the shadow string
-			$shadowString .= $this->aTag($this->imgTag($popupPath,$altTag),$popupPath .'" rel="detailpopup');
-			
-			$outputCount++;
-		}
-		
-		$detailAtts = $this->qStrArr($this->detailImageData);
-		$carouselAtts = $this->qStrArr($this->carouselThumbData);
-		if($detailAtts['w'] && $carouselAtts['w']){
-			$this->minCarouselImages = $detailAtts['w']/$carouselAtts['w'];
-		}
-		
-		
-		$prop['tinyImageString'] = $miniString;
-		$prop['shadowString'] = $shadowString;
-		$prop['largeImageString'] = $largeString;
-		$prop['showImageCarousel'] = ($outputCount >= $this->minCarouselImages);
-		//set basic image tsring to true when there is more than one image and less than the carousel requires
-		$prop['basicImageString'] = (($outputCount < $this->minCarouselImages) and ($outputCount > 1));
-		
-		//print_r($prop);
-		
-	}
-	return $prop;
-}
-*/
 
 /**
  * parses map data for a property
@@ -340,28 +268,57 @@ function parseMapData($prop){
  * viewing request logic and form
 */
 function viewingRequest(){
-	//check if the actual form was posted
-	if(isset($_POST['formname_viewing_form'])){
-	
-	}
-	else{
-		//output the form
-		$display = $this->modx->getChunk($this->rViewingTpl,array());
+	if(isset($_POST['formData'])){
+		//run the api request
 		
+		
+		$modalOutput = $this->processTpl('','thanks.html',array());
+		//send a success message to the user
+		$this->jsonEcho($modalOutput);
 	}
-	return $this->jsonEcho($display);
+}
+
+/**
+ * handles detail requests
+*/
+function detailRequest(){
+	if(isset($_POST['formData'])){
+		//run the api request
+		
+		
+		$modalOutput = $this->processTpl('','thanks.html',array());
+		//send a success message to the user
+		$this->jsonEcho($modalOutput);
+	}
+}
+
+/**
+ * handles send friend requests
+*/
+function sendFriendRequest(){
+	if(isset($_POST['formData'])){
+		//run the api request
+		
+		
+		$modalOutput = $this->processTpl('','thanks.html',array());
+		//send a success message to the user
+		$this->jsonEcho($modalOutput);
+	}
 }
 
 /**
  * viewing request logic and form
 */
 function hReport(){
-	//var_dump($this->prop); exit;
-	//check if the actual form was posted
-	$display = $this->modx->getChunk($this->hrTpl,$this->prop);
-	return $this->jsonEcho($display);
+	if(isset($_POST['formData'])){
+		//run the api request
+		
+		
+		$modalOutput = $this->processTpl('','thanks.html',array());
+		//send a success message to the user
+		$this->jsonEcho($modalOutput);
+	}
 }
-
 
 
 
@@ -725,6 +682,16 @@ function detailsPage(){
 		
 	if(isset($_POST['enqtype'])){
 		$this->prop = $prop;
+		
+		
+		if($_POST['enqtype'] == 'sendFriend'){
+			$this->sendFriendRequest();
+		}
+		
+		if($_POST['enqtype'] == 'denquiry'){
+			$this->detailRequest();
+		}
+		
 		if($_POST['enqtype'] == 'viewing'){
 			$this->viewingRequest();
 		}

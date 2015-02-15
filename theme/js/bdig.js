@@ -323,20 +323,39 @@ this.setSForms = function(){
 			if (!($('#bdModalContainer').length)){
 				$('body').prepend('<div id="bdModalContainer"></div>');
 			}
-			$('#bdModalContainer').html(modalContent);
-			var myModal = $('#'+settings.tParams.modId);
-			//run the on complete function
-			bDig.handleCallBack(settings.onComplete,myModal);
-			//modal code goes here
-			myModal.modal();
+			var existingModal = $('#'+settings.tParams.modId);
+			if(existingModal.length > 0){
+				$('#'+settings.tParams.modId).on('hidden.bs.modal', function (e) {
+					//progressNewModal();
+				});
+				//$('#bdModal').removeClass("fade").modal("hide");
+				progressNewModal();
+			}
+			else{
+				progressNewModal();
+			}
 			
-			//if a timeout is specified, run the timeout and close
-			if(settings.timeOut){
-				setTimeout(function(){
-					$('#'+settings.tParams.modId).modal('hide');
-					$('body').removeClass('modal-open');
-					$('.modal-backdrop').remove();
-				},settings.timeOut);
+			/**
+			 * progresses the modal to completion
+			*/
+			function progressNewModal(){
+				console.log('now prgressing');
+				$('#bdModalContainer').html(modalContent);
+				var myModal = $('#'+settings.tParams.modId);
+				//run the on complete function
+				bDig.handleCallBack(settings.onComplete,myModal);
+				//modal code goes here
+				myModal.modal();
+				
+				myModal.addClass("fade").modal("show");
+				//if a timeout is specified, run the timeout and close
+				if(settings.timeOut){
+					setTimeout(function(){
+						$('#'+settings.tParams.modId).modal('hide');
+						$('body').removeClass('modal-open');
+						$('.modal-backdrop').remove();
+					},settings.timeOut);
+				}
 			}
 			
 		}
