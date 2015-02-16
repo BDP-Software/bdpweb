@@ -22,6 +22,8 @@ var $defTplPath = 'assets/snippets/bdpweb/chunks/';
 var $cSymbolPosition = 'pre';
 var $currencySymbol = '&pound;';
 
+var $homeResTitle = 'streetName';
+
 //template map
 var $tplMap = array(
 	'sideBarSearch',
@@ -148,6 +150,9 @@ function startUp(){
 */
 function applyLogic($prop){
 	$prop['detailPath'] = $this->modx->makeUrl($this->detailPageId,'',array('p'=>$prop['property_id']));
+	$prop['pType'] = $prop['typeNames'][0];
+	$prop['homeResTitle'] = $prop[$this->homeResTitle];
+	
 	//echo "making url with id: ". $this->detailPageId;
 	return $prop;
 }

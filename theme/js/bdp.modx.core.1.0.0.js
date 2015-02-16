@@ -32,6 +32,9 @@ function bdpModXCore(options){
 		'sendFriendFormHandle' : '.bdf-sendFriendForm',
 		'homeReportFormHandle' : '.bdf-homeReportForm',
 		'requestViewingFormHandle' : '.bdf-requestViewingForm',
+		'lazyLoadingOuterContainerHandle' : '.bdf-lazyLoading',
+		'lazyLoadingContainerHandle' : '.bdf-lazyLoadingResContainer',
+		'lazyLoadingGraphicHandle' : '.bdf-lazyLoader',
 		'enquiryValidation' : {
 			rules : {
 				name : {
@@ -368,6 +371,103 @@ function bdpModXCore(options){
 			
 		});
 	}
+	
+	/**
+	 * Search Results Page
+	*/
+	
+	/**
+	 * set a listener for the ordering dropdown box
+	
+	$('#order_res').change(function(e){
+		e.preventDefault();
+		//create the new path
+		var nQString = bdp.appendGet(window.location.href,'ord',$(this).val());
+		var doPath = window.location.href.split('?')[0];
+		//console.log('New query string: ' + nQString);
+		doPath = doPath + (doPath.substr(-1) == '/' ? '' : '/') + nQString;
+		//alert("this is the doPath: " + doPath);
+		window.location.href = doPath;
+	});
+	*/
+	/**
+	 * set a listener for the number results dropdown box
+	
+	$('#nres').change(function(e){
+		e.preventDefault();
+		//create the new path
+		var nQString = bdp.remGet(settings.pageGVars,'resgroup');
+		var nQString = bdp.appendGet(nQString,$(this).attr('id'),$(this).val());
+		var doPath = '#'+settings.satPath + '/'+nQString;
+		window.location.href = bdp.siteRef + doPath;
+	});
+	*/	
+	
+	/**
+	 * sets the property video button
+	
+	bdp.setShootHome();
+	*/
+	
+	/**
+		 * set a lazy loading listenet
+		*/
+		$(settings.lazyLoadingOuterContainerHandle).each(function(){
+			var nres = 30;
+			var resContainer = this;
+			var win = $(window);
+			var doScrollJax = false;
+			var padding = (bDig.isIphone() ? 20 : 5);
+			win.unbind('scroll');
+			$(settings.lazyLoadingGraphicHandle).hide();
+			win.scroll(function(){
+				var totalHeight = Number($(document).height()) - Number(win.height()) - padding;
+				if($(window).scrollTop() >= totalHeight){
+					$(settings.lazyLoadingGraphicHandle,resContainer).show();
+					if(doScrollJax){
+						doScrollJax.abort();
+					}
+					doScrollJax = $.ajax({
+						url: window.location.href,
+						type: 'POST',
+						data : {
+							startRow : $('.search_result',resContainer).length,
+							lazyLoadRes : 1,
+						},
+						success : function(data){
+							bDig.checkDebug(data);
+							var output = bDig.grabOutput(data);
+							//console.log('output length: '+output.length+' :: '+nres);
+							if(output.length < nres){
+								if(output.replace(/ /g,'') == ''){
+									win.unbind('scroll');
+									//console.log($(settings.lazyLoadingGraphicHandle,resContainer).html());
+									$(settings.lazyLoadingGraphicHandle,resContainer).hide();
+									//console.log('less results and trying to hide');
+								}
+								else{
+									//console.log('output is less, but not hiding the graphic');
+									
+								}
+							}
+							else{
+								var finalRes = bDig.grabData(data,'finalRes');
+								
+								//var beforeHeight = $('#notifications_holder').height();
+								var beforeScroll = $('window').scrollTop();
+								$(settings.lazyLoadingContainerHandle,resContainer).append(output);
+								//var scrollDiff = $('#notifications_holder').height() - beforeHeight;
+								$('window').scrollTop(beforeScroll);
+								$(settings.lazyLoadingGraphicHandle,resContainer).hide();
+								//console.log('appending');
+								
+								
+							}
+						}
+					});
+				}
+			});
+		});
 	
 	
 }

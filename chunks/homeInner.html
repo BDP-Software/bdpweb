@@ -1,22 +1,22 @@
-<div class="col-md-3 col-sm-6 col-xs-12">
-	<div class="bdd-property-container [[+ extraClass ]]">
+<div class="col-md-4 col-sm-6 col-xs-12">
+	<div class="bdd-property-container">
 	  <div class="bdd-property-image">
-	    <a href="[[+detailPath]]"><img class="bdd-thumb" src="[[+imagePath]]&w=343&h=228&q=80" alt="[[+districtName]]"/></a>
+	    <a href="[[+detailPath]]"><img src="[[+imagePath]]&w=261&h=213&q=90" alt="[[+dispAddress]]"></a>
 	    <div class="bdd-property-price">
-	      [[!if?
-	  		&subject=`[[+districtName]]`
-	  		&operator=`!=`
-	  		&then=`<h4>[[+districtName]]</h4>`
-	  		&else=`<h4>[[+town]]</h4>`
-	  	]]
+	      <h4>[[+pType]]</h4>
 	      <span>[[+outputAskingPrice]] [[+letFrequency]]</span>
 	    </div>
-	    <div class="bdd-property-status">
-	      <span>For Sale</span>
-	    </div>
+	    [[!if?
+	  		&subject=`[[+priceTypeLabel]]`
+	  		&operator=`!=`
+	  		&then=`<div class="bdd-property-status">
+		  		<span>[[+priceTypeLabel]]</span>
+		  		</div>`
+	  		&else=``
+	  	]]
 	  </div>
 	  <div class="bdd-property-features">
-	   [[!if?
+	  	[[!if?
 	  		&subject=`[[!+sqmHouse]]`
 	  		&operator=`!=`
 	  		&then=`<span><i class="fa fa-home"></i> [[!+sqmHouse]] m<sup>2</sup></span>`
@@ -26,14 +26,7 @@
 	    <span><i class="fa fa-male"></i> [[+bathRooms]] Bath</span>
 	  </div>
 	  <div class="bdd-property-content">
-	    <h3><a href="[[+detailPath]]">[[if?
-	    	&subject=`[[+espcDistrict]]`
-	    	&operator=`!=`
-	    	&then=`[[+espcDistrict]]`
-	    	&else=`[[+streetName]]`
-	    ]]
-	     </a> <small>[[+pType]]</small></h3> 
+	    <h3><a href="[[+detailPath]]">[[+town]]</a> <small>[[+homeResTitle]]</small></h3>
 	  </div>
 	</div>
 </div>
-<!-- break -->
