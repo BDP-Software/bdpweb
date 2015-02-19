@@ -174,7 +174,7 @@ function applyDetailLogic($prop){
 			$feetLength = $this->metersToFeetInches($room['roomLength']);
 			$room['roomDimensions'] = (is_numeric($room['roomWidth']) && is_numeric($room['roomLength']) ? '('. number_format($room['roomWidth'],2,'.',',') .'m x '. number_format($room['roomLength'],2,'.',',') .'m / '. $feetWidth['feet'] ."'".$feetWidth['inches'] .'" x '. $feetLength['feet'] ."'".$feetLength['inches'] .'")' : '');
 			
-			$prop['roomText'] .= $this->modx->getChunk($this->roomTpl,$room);
+			$prop['roomText'] .= $this->processModeTpl($this->roomTpl,'roomTpl',$room);
 			
 		}
 	}

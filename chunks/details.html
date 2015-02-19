@@ -32,18 +32,10 @@
 							</div>
 						</div>
 						<div class="row">
-							[[if? &subject=`[[+featureList]]` &operator=`notempty` &then=`
+							[[!+featureList:notempty=`
 								<div class="col-md-6 col-sm-6">
 									<h3>Property Overview</h3>
 									<table class="table table-bordered">
-										[[!if?
-										&subject=`[[+property_id]]`
-										&operator=`notempty` &then=`
-										<tr>
-											<td width="20%"><strong>ID</strong></td>
-											<td>[[+property_id]]</td>
-										  </tr>` 
-										 &else=`` ]]
 										<tr>
 											<td><strong>Price</strong></td>
 											<td>[[+priceTypeLabel]] [[+outputAskingPrice]] [[+letFrequency]]</td>
@@ -64,22 +56,16 @@
 											<td><strong>Bedrooms</strong></td>
 											<td>[[+bedRooms]]</td>
 										</tr>
-										[[!if?
-										&subject=`[[+sqmHouse]]`
-										&operator=`notempty` &then=`
+										[[!+sqmHouse:notempty=`
 										<tr>
 											<td><strong>Area</strong></td>
 											<td>[[+sqmHouse]]m<sup>2</sup></td>
-										</tr>`
-										&else=`` ]]
-										[[!if?
-										&subject=`[[+epcBand]]`
-										&operator=`notempty` &then=`
+										</tr>`]]
+										[[!+epcBand:notempty=`
 										<tr>
 											<td><strong>EPC Rating</strong></td>
 											<td>Band [[+epcBand]]</td>
-										</tr>`
-										&else=`` ]]
+										</tr>`]]
 									</table>
 								</div>
 								<div class="col-md-6 col-sm-6">
@@ -87,17 +73,11 @@
 										<div style="margin-left: 2em">
 											[[+featureList]]
 										</div>
-								</div>`
-								&else=`
+								</div>`:else=`
 								<div class="col-md-12 col-sm-12">
 									<h3>Property Overview</h3>
 
 									<table class="table table-bordered">
-										<!-- <tr>
-					<td width="20%"><strong>ID</strong></td>
-					<td>#121</td>
-				  </tr> -->
-
 										<tr>
 											<td><strong>Price</strong></td>
 
@@ -133,16 +113,12 @@
 
 											<td>[[+bedRooms]]</td>
 										</tr>
-										[[if? 
-										&subject=`[[+sqmHouse]]` 
-										&operator=`notempty` 
-										&then=`
+										[[!+sqmHouse:notempty=`
 										<tr>
 											<td><strong>Area</strong></td>
 
 											<td>[[+sqmHouse]]m<sup>2</sup></td>
-										</tr>`
-										&else=`` ]]
+										</tr>`]]
 									</table>
 								</div>`
 								]]
@@ -190,8 +166,7 @@
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<!-- Here we use the If snippet to either insert the negotiator's details if one is assigned, or the general property department details if not using the &then and &else variables -->
-										[[if? &subject=`[[+staffNeg_firstName]]` &operator=`notempty` &then=`
-
+										[[!+staffNeg_firstName:notempty=`
 										<div class="team-container team-dark">
 
 											<div class="team-description">
@@ -209,8 +184,7 @@
 													<span><a class="fa fa-linkedin" data-placement="top" data-text="[[+dispAddress]]" data-url="[[+detailPath]]" href="#" rel="tooltip" title="LinkedIn"></a></span>
 												</div>
 											</div>
-										</div>` 
-										&else=`
+										</div>`:else=`
 										<div class="team-container team-dark">
 											<div class="team-description">
 												<h3>Our property team</h3>
@@ -274,29 +248,17 @@
 		  <a href="#" data-toggle="modal" data-target="#espchr"><i class="fa fa-book"></i> Home Report</a>
 		</div>
 		<!-- break -->
-		[[!if?&subject=`[[+brochurePathPublic]]`
-					&operator=`!=`
-					&then=`<div class="bdd-detailButtons favorite">
+		[[!+brochurePathPublic:notempty=`<div class="bdd-detailButtons favorite">
 		  <a href="[[+brochurePathPublic]]"><i class="fa fa-newspaper-o"></i> Brochure</a>
-		</div>`
-					&else=``
-					]]
+		</div>`]]
 		<!-- break -->
-		[[!if?&subject=`[[+floorPlanPdfPathPublic]]`
-					&operator=`!=`
-					&then=`<div class="bdd-detailButtons favorite">
+		[[!+floorPlanPdfPathPublic:notempty=`<div class="bdd-detailButtons favorite">
 		  <a href="[[+floorPlanPdfPathPublic]]"><i class="fa fa-file-pdf-o"></i> PDF floor plan</a>
-					</div>`
-					&else=``
-					]]
-		<!-- break -->
-		[[!if?&subject=`[[+epcDocPathPublic]]`
-					&operator=`!=`
-					&then=`<div class="bdd-detailButtons favorite">
+		</div>`]]
+		<!-- break -->		
+		[[!+epcDocPathPublic:notempty=`<div class="bdd-detailButtons favorite">
 		  <a href="[[+epcDocPathPublic]]"><i class="fa fa-sort-amount-asc"></i> EPC ([[+epcBand]])</a>
-		</div>`
-					&else=``
-					]]
+		</div>`]]
 		<!-- break -->
 		<div class="bdd-detailButtons favorite">
 		  <a href="#bookViewing" data-toggle="modal" data-target="#bookViewing"><i class="fa fa-calendar"></i> Book a viewing</a>
