@@ -78,6 +78,7 @@ $mode = ($mode ? $mode : 'results');
  * Includes Path
 */
 $incPath = 'assets/snippets/bdpweb/';
+$cfgPath = 'assets/snippets/bdpweb_cfg/';
 
 /**
  * sets the display to blank
@@ -98,6 +99,31 @@ require_once($incPath .'/restclient/class.gPropsRestClient.php');
 //load the core web plugin
 require_once($incPath .'/class.bdpWebPlugin.php');
 
+//set the plugin name
+$pluginName = 'bdpWebPlugin';
+
+//include the config file
+$configFile = $cfgPath .'cfg.php';
+if(file_exists($configFile)){
+	include($configFile);
+}
+else{
+	echo 'No config file found';
+	return false;
+}
+
+//include the config file
+$modFilePath = $cfgPath . $modFile;
+if($modFilePath && $modClassName){
+	if(file_exists($modFilePath)){
+		require_once($modFilePath);
+		$pluginName = $modClassName;
+	}
+	else{
+		echo 'No plugin file found';
+		return false;
+	}
+}
 
 //set the consurction map
 $constructionMap = array(
@@ -117,7 +143,7 @@ $constructionMap = array(
 );
 
 //run the utilities class
-$plugin = new bdpWebPlugin();
+$plugin = new $pluginName();
 
 //setupt the plugin
 foreach($constructionMap as $key => $map){
