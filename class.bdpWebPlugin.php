@@ -597,6 +597,8 @@ function searchResults(){
 		$params['resgroup'] = $page;
 	}
 	
+	unset($params['q']);
+	
 	//put the query string back together
 	$qString = $this->arrQStr($params);
 	
