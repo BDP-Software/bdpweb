@@ -52,13 +52,30 @@ searchParams - Default Search Parameters. Defauylt : 'nres=12&ord=decprice'
 
 
 ###Search Form
+####Example Implementation
 [[!bdpWeb? &mode=`searchForm`]]
+####Available Parameters
+tpl - Form Chunk. Default: 'searchform.html'
 
 ###Search Results
+####Example Implementation
 [[!bdpWeb? &mode=`results`]]
+####Available Parameters
+tpl - Inner property chunk. Default: 'sresInner.html'
+
+outerTpl - Outer property chunk. Default: 'sresOuter.html'
+
+searchParams - Default Search Parameters. Defauylt : 'nres=30&ord=decprice'
 
 ###Property Details
+####Example Implementation
 [[!bdpWeb? &mode=`details`]]
+####Available Parameters
+tpl - Inner property chunk. Default: 'details.html'
+
+roomTpl - Repeating Room Chunk. Default: 'room.html'
+
+searchParams - Default Search Parameters. Defauylt : 'nres=12&ord=decprice'
 
 ## Implementation of the Provided Theme
 The theme has the following dependancies:
