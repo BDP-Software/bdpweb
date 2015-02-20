@@ -29,14 +29,28 @@ Please feel free to adapt and improve and commit for the benefit of all.
 ##Information about search parameters
 http://i.bdphq.com/controlling-output-using-the-url/
 
-The parameters discussed int he BDP system can be used when calling the snippet in results and home mode, this will filter the results displayed.
+The search parameters discussed in the BDP system can be used when calling the snippet in results and home mode, this will filter the results displayed.
 
-## Example Snippet Calls
+If you wish to modify the markup provided, create a new chunk in MODx and define it when calling the snippet. All default chunks can be found in the chunks folder provided. 
+
+## Available Snippet Modes
 
 ###Homepage
+####Example Implementation
 [[!bdpWeb? &mode = `home`]]
+
 or
+
 [[!bdpWeb? &mode = `home` &searchParams=`nres=12&ord=decprice`]] //limiting the results to a set of 12 in descending order of price
+
+####Available Parameters
+Parameter | Description | Default Value
+tpl - Inner property chunk. Default: 'homeInner.html'
+
+outerTpl - Outer property chunk. Default: 'homeOuter.html'
+
+searchParams - Default Search Parameters. Defauylt : 'nres=12&ord=decprice'
+
 
 ###Search Form
 [[!bdpWeb? &mode=`searchForm`]]
