@@ -87,7 +87,7 @@ This can be included ina s cript tag within the page footer or in a sourced java
 
 ##Example Footer Includes
 ```
-<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Core Bootstrap -->
 <script src="/modx/assets/components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Include Slick Slider -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
@@ -99,6 +99,7 @@ This can be included ina s cript tag within the page footer or in a sourced java
 <script src="/modx/assets/snippets/bdpweb/theme/js/bdig.js"></script>
 <!-- BDP Modx JS -->
 <script src="/modx/assets/snippets/bdpweb/theme/js/bdp.modx.core.1.0.0.js"></script>
+<!-- Start the BDP ModX Theme JS -->
 <script type="text/javascript">
 /*
  * jquery on document ready functions
