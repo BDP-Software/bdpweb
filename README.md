@@ -68,7 +68,7 @@ $(document).ready(function(){
 });
 This can be included ina s cript tag within the page footer or in a sourced javascript file.
 
-##Example Header Includes
+###Example Header Includes
 ```
 <!-- BDP Modx Theme Dependancy - Fonts -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -85,7 +85,7 @@ This can be included ina s cript tag within the page footer or in a sourced java
 ```
 
 
-##Example Footer Includes
+###Example Footer Includes
 ```
 <!-- Core Bootstrap -->
 <script src="/modx/assets/components/bootstrap/dist/js/bootstrap.min.js"></script>
