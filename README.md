@@ -69,6 +69,7 @@ $(document).ready(function(){
 This can be included ina s cript tag within the page footer or in a sourced javascript file.
 
 ##Example Header Includes
+```
 <!-- BDP Modx Theme Dependancy - Fonts -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -81,11 +82,11 @@ This can be included ina s cript tag within the page footer or in a sourced java
 
 <!-- BDP Modx Theme Dependancy - Google Maps API V3 -->
 <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'}]}"></script>
-
+```
 
 
 ##Example Footer Includes
-
+```
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/modx/assets/components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Include Slick Slider -->
@@ -106,4 +107,4 @@ $(document).ready(function(){
 	var bdpModX = new bdpModXCore({});	
 });
 </script>
-	
+```
