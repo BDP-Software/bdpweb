@@ -1,4 +1,4 @@
-# BDP MOdx Plugin v1.0.0 
+# BDP MODx Plugin v1.0.0 
 
 This is licensed under an MIT standard license. Please see the separate document.
 
