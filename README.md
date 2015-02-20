@@ -44,7 +44,6 @@ or
 [[!bdpWeb? &mode = `home` &searchParams=`nres=12&ord=decprice`]] //limiting the results to a set of 12 in descending order of price
 
 ####Available Parameters
-Parameter | Description | Default Value
 tpl - Inner property chunk. Default: 'homeInner.html'
 
 outerTpl - Outer property chunk. Default: 'homeOuter.html'
