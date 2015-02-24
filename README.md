@@ -37,7 +37,7 @@ If you wish to modify the markup provided, create a new chunk in MODx and define
 	&mode=`results`
 	&tpl=`myInnerChunkTemplate`
 	&outerTpl=`myOuterChunkTemplate`
-	]]
+]]
 ```
 
 All default chunks can be found in the chunks folder provided. 
@@ -49,14 +49,14 @@ All default chunks can be found in the chunks folder provided.
 ```
 [[!bdpWeb? 
 	&mode=`home`
-	]]
+]]
 ```
 or
 ```
 [[!bdpWeb? 
 	&mode=`home` 
 	&searchParams=`nres=12&ord=decprice`
-	]] //limiting the results to a set of 12 in descending order of price
+]] //limiting the results to a set of 12 in descending order of price
 ```
 ####Available Parameters
 tpl - Inner property chunk. Default: 'homeInner.html'
@@ -71,7 +71,7 @@ searchParams - Default Search Parameters. Default : 'nres=12&ord=decprice'
 ```
 [[!bdpWeb? 
 	&mode=`searchForm`
-	]]
+]]
 ```
 ####Available Parameters
 tpl - Form Chunk. Default: 'searchform.html'
@@ -81,7 +81,7 @@ tpl - Form Chunk. Default: 'searchform.html'
 ```
 [[!bdpWeb? 
 	&mode=`results`
-	]]
+]]
 ```
 ####Available Parameters
 tpl - Inner property chunk. Default: 'sresInner.html'
@@ -95,7 +95,7 @@ searchParams - Default Search Parameters. Default : 'nres=30&ord=decprice'
 ```
 [[!bdpWeb? 
 	&mode=`details`
-	]]
+]]
 ```
 ####Available Parameters
 tpl - Inner property chunk. Default: 'details.html'
@@ -129,17 +129,17 @@ This can be included in a script tag within the page footer or in a sourced java
 
 ###Example Header Includes
 ```
-<!-- BDP Modx Theme Dependancy - Fonts -->
+<!-- BDP MODx Theme Dependancy - Fonts -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- BDP Modx Theme Dependancy - Slick Slider CSS -->
+<!-- BDP MODx Theme Dependancy - Slick Slider CSS -->
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"/>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/>
 
-<!-- Optional BDP ModX Theme -->
+<!-- Optional BDP MODx Theme -->
 <link href="[[++assets_url]]snippets/bdpweb/theme/css/bdp.modx.css.option1.v1.0.0.css" rel="stylesheet" media="screen">
 
-<!-- BDP Modx Theme Dependancy - Google Maps API V3 -->
+<!-- BDP MODx Theme Dependancy - Google Maps API V3 -->
 <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'}]}"></script>
 ```
 
@@ -156,9 +156,9 @@ This can be included in a script tag within the page footer or in a sourced java
 <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"></script>
 <!-- Core BDP JS -->
 <script src="[[++assets_url]]snippets/bdpweb/theme/js/bdig.js"></script>
-<!-- BDP Modx JS -->
+<!-- BDP MODx JS -->
 <script src="[[++assets_url]]snippets/bdpweb/theme/js/bdp.modx.core.1.0.0.js"></script>
-<!-- Start the BDP ModX Theme JS -->
+<!-- Start the BDP MODx Theme JS -->
 <script type="text/javascript">
 /*
  * jquery on document ready functions
