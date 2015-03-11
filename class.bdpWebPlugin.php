@@ -210,12 +210,22 @@ function applyDetailLogic($prop){
 	foreach($prop['images'] as $key => $image){
 		if(is_array($this->imgTpls)){
 			foreach($this->imgTpls as $imgKey => $imgTpl){
+				$nameParts = explode ('.',$imgTpl);
+				
+				$useChunk = ((count($nameParts) > 1) ? false : true);
+				
 				if(!array_key_exists($imgKey,$prop)){
 					$prop[$imgKey] = '';
 				}
-				$prop[$imgKey] .= $this->processTpl('',$imgTpl,$image);
+				if($useChunk){
+					$prop[$imgKey] .= $this->processTpl($imgTpl,'',$image);
+				}
+				else{
+					$prop[$imgKey] .= $this->processTpl('',$imgTpl,$image);	
+				}
+				
 			}
-			//echo $imgKey .' :: '. $prop[$imgKey]; exit;
+			//echo $imgKey .' :: '. $imgTpl; 
 		}
 		else{
 			if(!array_key_exists('imgString',$prop)){
@@ -225,6 +235,7 @@ function applyDetailLogic($prop){
 			$prop['imgString'] .= $this->processTpl('','imgstring.html',$image);
 		}
 	}
+	//exit;
 	//var_dump($prop); exit;
 	
 	//set the form handler url
