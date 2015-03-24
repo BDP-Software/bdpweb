@@ -37,7 +37,10 @@ function bdpModXCore(options){
 		'lazyLoadingGraphicHandle' : '.bdf-lazyLoader',
 		'enquiryValidation' : {
 			rules : {
-				name : {
+				firstName : {
+					required: true,
+				},
+				lastName : {
 					required: true,
 				},
 				email : {
@@ -176,7 +179,7 @@ function bdpModXCore(options){
 		client.getPanoramaByLocation(panoramaOptions.position, 50, function(data,status){
 			if(status == 'ZERO_RESULTS'){
 				if(console){
-					console.log('Unable to retrieve Streetview data, removing Streetview functionality');
+					//console.log('Unable to retrieve Streetview data, removing Streetview functionality');
 				}
 				$(settings.detailsStreetViewId).hide();
 				$(settings.streetviewHideHandle).hide();
@@ -323,20 +326,29 @@ function bdpModXCore(options){
 				//the form fields are valid, post to the server and display the response
 				//console.log('The enquiry form should now send');
 				$('#'+formSettings.formModalId).removeClass("fade").modal("hide");
+				var formDataArr = $(formSettings.formHandle).serializeArray();
+				
+				var formData = {
+					formData : '1',
+					enqtype : formSettings.submitFlag
+				}
+				for(var i in formDataArr){
+					//console.log(formDataArr[i]);
+					formData[formDataArr[i]['name']] = formDataArr[i]['value'];
+				}
+				
 				bDig.loadModal({
 					content : false,
 					template : 'assets/snippets/bdpweb/theme/jstemps/pleasewait.html',
 					timeOut : false,
 					tParams : {},
+					removeId : formSettings.formModalId,
 					onComplete : function(){
 						//console.log('the modal should now have appeared');
 						$.ajax({
 							url : window.location.href,
 							type : 'POST',
-							data : {
-								formData : '1',
-								enqtype : formSettings.submitFlag
-							},
+							data :formData,
 							success : function(data){
 								if(data.output){
 									

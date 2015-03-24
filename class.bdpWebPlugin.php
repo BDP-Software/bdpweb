@@ -285,8 +285,23 @@ function parseMapData($prop){
 */
 function viewingRequest(){
 	if(isset($_POST['formData'])){
-		//run the api request
 		
+		//setup the request data
+		$rData = array(
+			'propertyId'=>$this->currentRef,
+			'createdDate'=>$requestDate,
+			'viewingRequested'=>true,
+			'message'=>$_POST['message'],
+			'contactData'=>array(
+				'firstName'=>$_POST['firstName'],
+				'firstName'=>$_POST['lastName'],
+				'tel1'=>$_POST['tel'],
+				'email'=>$_POST['email'],
+			)
+		);
+		
+		//run the api request
+		$this->api->newRequest($rData);
 		
 		$modalOutput = $this->processTpl('','thanks.html',array());
 		//send a success message to the user
@@ -299,7 +314,22 @@ function viewingRequest(){
 */
 function detailRequest(){
 	if(isset($_POST['formData'])){
+		//setup the request data
+		$rData = array(
+			'propertyId'=>$this->currentRef,
+			'createdDate'=>$requestDate,
+			'detailsRequested'=>true,
+			'message'=>$_POST['message'],
+			'contactData'=>array(
+				'firstName'=>$_POST['firstName'],
+				'firstName'=>$_POST['lastName'],
+				'tel1'=>$_POST['tel'],
+				'email'=>$_POST['email'],
+			)
+		);
+		
 		//run the api request
+		$this->api->newRequest($rData);
 		
 		
 		$modalOutput = $this->processTpl('','thanks.html',array());
@@ -314,7 +344,26 @@ function detailRequest(){
 function sendFriendRequest(){
 	if(isset($_POST['formData'])){
 		//run the api request
+		//setup the request data
+		$rData = array(
+			'propertyId'=>$this->currentRef,
+			'createdDate'=>$requestDate,
+			'sendFriend'=>true,
+			'message'=>$_POST['message'],
+			'friendData'=>array(
+				'name'=>$_POST['friendsName'],
+				'email'=>$_POST['friendsName'],
+			),
+			'contactData'=>array(
+				'firstName'=>$_POST['firstName'],
+				'firstName'=>$_POST['lastName'],
+				'tel1'=>$_POST['tel'],
+				'email'=>$_POST['email'],
+			)
+		);
 		
+		//run the api request
+		$this->api->newRequest($rData);
 		
 		$modalOutput = $this->processTpl('','thanks.html',array());
 		//send a success message to the user
@@ -327,7 +376,23 @@ function sendFriendRequest(){
 */
 function hReport(){
 	if(isset($_POST['formData'])){
+		
+		//setup the request data
+		$rData = array(
+			'propertyId'=>$this->currentRef,
+			'createdDate'=>$requestDate,
+			'hrRequested'=>true,
+			'message'=>$_POST['message'],
+			'contactData'=>array(
+				'firstName'=>$_POST['firstName'],
+				'firstName'=>$_POST['lastName'],
+				'tel1'=>$_POST['tel'],
+				'email'=>$_POST['email'],
+			)
+		);
+		
 		//run the api request
+		$this->api->newRequest($rData);
 		
 		
 		$modalOutput = $this->processTpl('','thanks.html',array());

@@ -323,12 +323,13 @@ this.setSForms = function(){
 			if (!($('#bdModalContainer').length)){
 				$('body').prepend('<div id="bdModalContainer"></div>');
 			}
-			var existingModal = $('#'+settings.tParams.modId);
+			var existingModal = (settings.removeId ? $('#'+settings.removeId) : $('#'+settings.tParams.modId));
 			if(existingModal.length > 0){
-				$('#'+settings.tParams.modId).on('hidden.bs.modal', function (e) {
+				existingModal.on('hidden.bs.modal', function (e) {
 					//progressNewModal();
 				});
-				//$('#bdModal').removeClass("fade").modal("hide");
+				//console.log(existingModal);
+				existingModal.removeClass("fade").modal("hide");
 				progressNewModal();
 			}
 			else{
@@ -339,7 +340,7 @@ this.setSForms = function(){
 			 * progresses the modal to completion
 			*/
 			function progressNewModal(){
-				console.log('now prgressing');
+				
 				$('#bdModalContainer').html(modalContent);
 				var myModal = $('#'+settings.tParams.modId);
 				//run the on complete function
