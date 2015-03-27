@@ -23,7 +23,9 @@ Please feel free to adapt and improve and commit for the benefit of all.
 
 5) Create (if you haven't already) a resource (page) to hold search results, a separate resource (page) for lettings search results (if required) and a resource for property details. Put the resource (page) ids in the config file.
 
-6) Enter the snippet call on the relevant resources (pages), chunks or templates in the MODx installation. See examples below for typical use.
+6) Create a new Snippet in the MODx manager called "bdpWeb" and either copy/paste the contents of "bdpWeb.php" into it, or point MODx to the file as a static resource.
+
+7) Enter the snippet call on the relevant resources (pages), chunks or templates in the MODx installation. See examples below for typical use.
 
 
 ##Information about search parameters
