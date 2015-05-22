@@ -66,6 +66,71 @@ var $modeMap = array(
 	)
 );
 
+/**
+ * sale price options
+ */
+var $salePriceOptions = '0,50000,75000,100000,125000,150000,175000,200000,225000,250000,275000,300000,325000,350000,400000,450000,500000,600000,700000,800000,900000,1000000,1250000,1500000,2000000,2500000,3000000,3500000,4000000,4500000,5000000,6000000,7500000,10000000,15000000,20000000,30000000,40000000,50000000,75000000,100000000,150000000';
+
+/**
+ * sale price options
+ */
+var $letPriceOptions = '0,200,500,750,1000,1250,1500,2000,2500,3000,4000,5000,10000,20000';
+
+var $maxSalePrice = 1490000;
+
+var $maxLetPrice = 10000;
+
+//set the property type options
+var $pTypeArr = array(
+		array(
+			'label'=>'Any',
+			'value'=>'',
+		),
+		array(
+			'label'=>'Houses',
+			'value'=>'46',
+		),
+		array(
+			'label'=>'Flats / Apartments',
+			'value'=>'47',
+		),
+		array(
+			'label'=>'Not Specified',
+			'value'=>'308',
+		),
+		array(
+			'label'=>'Garage / Parking',
+			'value'=>'83',
+		),
+		array(
+			'label'=>'Bungalows',
+			'value'=>'60',
+		),
+		array(
+			'label'=>'Reirement Property',
+			'value'=>'84',
+		),
+		array(
+			'label'=>'Land',
+			'value'=>'71',
+		),
+		array(
+			'label'=>'Character Property',
+			'value'=>'80',
+		),
+		array(
+			'label'=>'Guest House',
+			'value'=>'67',
+		),
+		array(
+			'label'=>'House / FLat Share',
+			'value'=>'86',
+		),
+	);
+/*
+ * Max Bedrooms
+*/
+var $bedRoomsMax = 6;
 
 
 /**
@@ -91,11 +156,19 @@ function startUp(){
 		'resPageId',
 		'resPageIdLettings',
 		'chunkFolder',
-		'imgTpls'
+		'imgTpls',
+		'salePriceOptions',
+		'letPriceOptions',
+		'maxSalePrice',
+		'maxLetPrice',
+		'pTypeArr',
+		'bedRoomsMax'
 	);
 	//setup the plugin
 	foreach($classMap as $key => $map){
-		$this->$map = $$map;
+		if($$map){
+			$this->$map = $$map;
+		}
 	}
 
 	
@@ -409,17 +482,10 @@ function hReport(){
  * runs the search form stuff
 */
 function searchForm(){
-	$this->maxPrice = 1490000;
-	$this->bedRoomsMax = 6;
+	
 	
 	//set the form fields
-	//minPriceOPtions
-	$priceOptions = '0,50000,75000,100000,125000,150000,175000,200000,225000,250000,275000,300000,325000,350000,400000,450000,500000,600000,700000,800000,900000,1000000,1250000,1500000,2000000,2500000,3000000,3500000,4000000,4500000,5000000,6000000,7500000,10000000,15000000,20000000,30000000,40000000,50000000,75000000,100000000,150000000';
-	//set the price array
-	$priceArr = explode(',',$priceOptions);
-	//loop the array and create the options - min then max
-	$this->minPriceOptions = '';
-	$this->maxPriceOptions = '';
+	
 	
 	$this->searchParams = array();
 	//create the search params
@@ -429,17 +495,26 @@ function searchForm(){
 		);
 	}
 	
-	//min price options
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// Sale Price Options
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//set the price array
+	$priceArr = explode(',',$this->salePriceOptions);
+	//loop the array and create the options - min then max
+	$this->minPriceOptionsSale = '';
+	$this->maxPriceOptionsSale = '';
+	
 	foreach($priceArr as $price){
 		$selected = false;
 		$doBreak = false;
 		if($this->searchParams['pricefrom']['Value'] == $price){
 			$selected = true;
 		}
-		if($price > $this->maxPrice){
+		if($price > $this->maxSalePrice){
 			$doBreak = true;
 		}
-		$this->minPriceOptions .= $this->optionField($price,$this->prepareCurrency($price,0),$selected);
+		$this->minPriceOptionsSale .= $this->optionField($price,$this->prepareCurrency($price,0),$selected);
 		if($doBreak){
 			break;
 		}
@@ -459,7 +534,7 @@ function searchForm(){
 			$selected = true;
 			//echo "selecting 1";
 		}
-		if($price > $this->maxPrice){
+		if($price > $this->maxSalePrice){
 			$doBreak = true;
 			if(!$maxSet){
 				//echo "selecting 2";
@@ -470,11 +545,71 @@ function searchForm(){
 			$selected = true;
 		}
 		//echo $price .' :: '. $selected ."\n";
-		$this->maxPriceOptions .= $this->optionField($price,$this->prepareCurrency($price,0),$selected);
+		$this->maxPriceOptionsSale .= $this->optionField($price,$this->prepareCurrency($price,0),$selected);
 		if($doBreak){
 			break;
 		}
 	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// Let Price Options
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//set the price array
+	$priceArr = explode(',',$this->letPriceOptions);
+	//loop the array and create the options - min then max
+	$this->minPriceOptionsLet = '';
+	$this->maxPriceOptionsLet = '';
+	
+	foreach($priceArr as $price){
+		$selected = false;
+		$doBreak = false;
+		if($this->searchParams['pricefrom']['Value'] == $price){
+			$selected = true;
+		}
+		if($price > $this->maxLetPrice){
+			$doBreak = true;
+		}
+		$this->minPriceOptionsLet .= $this->optionField($price,$this->prepareCurrency($price,0),$selected);
+		if($doBreak){
+			break;
+		}
+	}
+	
+	
+	$maxSet = false;
+	$priceTiers = count($priceArr);
+	$pI = 0;
+	//max price options
+	foreach($priceArr as $price){
+		$pI++;
+		$selected = false;
+		$doBreak = false;
+		if(($this->searchParams['priceto']['Value'] == $price) && $price){
+			$maxSet = true;
+			$selected = true;
+			//echo "selecting 1";
+		}
+		if($price > $this->maxLetPrice){
+			$doBreak = true;
+			if(!$maxSet){
+				//echo "selecting 2";
+				$selected = true;
+			}
+		}
+		if(($pI >= $priceTiers) && !$maxSet){
+			$selected = true;
+		}
+		//echo $price .' :: '. $selected ."\n";
+		$this->maxPriceOptionsLet .= $this->optionField($price,$this->prepareCurrency($price,0),$selected);
+		if($doBreak){
+			break;
+		}
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	$this->minBedOptions = '';
 	$this->maxBedOptions = '';
@@ -500,56 +635,12 @@ function searchForm(){
 		$this->maxBedOptions .= $this->optionField($i,$i,$selected);
 	}
 	
-	//set the property type options
-	$pTypeArr = array(
-		array(
-			'label'=>'Any',
-			'value'=>'',
-		),
-		array(
-			'label'=>'Houses',
-			'value'=>'46',
-		),
-		array(
-			'label'=>'Flats / Apartments',
-			'value'=>'47',
-		),
-		array(
-			'label'=>'Not Specified',
-			'value'=>'308',
-		),
-		array(
-			'label'=>'Garage / Parking',
-			'value'=>'83',
-		),
-		array(
-			'label'=>'Bungalows',
-			'value'=>'60',
-		),
-		array(
-			'label'=>'Reirement Property',
-			'value'=>'84',
-		),
-		array(
-			'label'=>'Land',
-			'value'=>'71',
-		),
-		array(
-			'label'=>'Character Property',
-			'value'=>'80',
-		),
-		array(
-			'label'=>'Guest House',
-			'value'=>'67',
-		),
-		array(
-			'label'=>'House / FLat Share',
-			'value'=>'86',
-		),
-	);
+	
 	$this->pTypeOptions = '';
 	//min price options
-	foreach($pTypeArr as $option){
+	
+	
+	foreach($this->pTypeArr as $option){
 		$selected = false;
 		if($this->searchParams['property_type']['Value'] == $option['value']){
 			$selected = true;
@@ -563,8 +654,10 @@ function searchForm(){
 	
 	//integrate the outer template	
 	$display = $this->processModeTpl($this->tpl,'tpl',array(
-		'minPriceOptions'=>$this->minPriceOptions,
-		'maxPriceOptions'=>$this->maxPriceOptions,
+		'minPriceOptionsSale'=>$this->minPriceOptionsSale,
+		'maxPriceOptionsSale'=>$this->maxPriceOptionsSale,
+		'minPriceOptionsLet'=>$this->minPriceOptionsLet,
+		'maxPriceOptionsLet'=>$this->maxPriceOptionsLet,
 		'minBedOptions'=>$this->minBedOptions,
 		'maxBedOptions'=>$this->maxBedOptions,
 		'pTypeOptions'=>$this->pTypeOptions,
