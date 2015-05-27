@@ -225,7 +225,7 @@ function applyLogic($prop){
 	$prop['detailPath'] = $this->modx->makeUrl($this->detailPageId,'',array('p'=>$prop['property_id']));
 	$prop['pType'] = $prop['typeNames'][0];
 	$prop['homeResTitle'] = $prop[$this->homeResTitle];
-	
+	$prop['imgPath'] = 'https://bdphq.com/?bdimg='. $prop['imagePath'];
 	//echo "making url with id: ". $this->detailPageId;
 	return $prop;
 }
@@ -876,7 +876,7 @@ function detailsPage(){
 			$this->hReport();
 		}
 	}
-	
+	//var_dump($prop);
 	//integrate the outer template
 	$display = $this->processModeTpl($this->tpl,'tpl',$prop);	
 	

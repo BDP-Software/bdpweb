@@ -82,7 +82,7 @@ function newRequest($rData=array()){
 		$result = $this->api->put("request/",$rData,array('Content-Type'=>'application/json'));
 		$output = json_decode($result->response,true);
 		//var_dump($this->api->curlDebugArr);
-		echo $result->response; exit;
+		//echo $result->response; exit;
 		
 	}
 	catch(Exception $e){

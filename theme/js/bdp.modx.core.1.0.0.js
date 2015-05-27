@@ -150,9 +150,9 @@ function bdpModXCore(options){
 			title:$(settings.mapTitleHandle).html(),
 			draggable: false
 		};
+		
 		if(settings.markerIconUrl){
-			markerData[icon] = settings.markerIconUrl;
-			
+			markerData.icon = settings.markerIconUrl;
 		}
 		
 		
