@@ -326,6 +326,7 @@ function bdpModXCore(options){
 				//the form fields are valid, post to the server and display the response
 				//console.log('The enquiry form should now send');
 				$('#'+formSettings.formModalId).removeClass("fade").modal("hide");
+				//console.log('hiding this: ' + formSettings.formModalId);
 				var formDataArr = $(formSettings.formHandle).serializeArray();
 				
 				var formData = {
@@ -390,18 +391,20 @@ function bdpModXCore(options){
 	
 	/**
 	 * set a listener for the ordering dropdown box
-	
-	$('#order_res').change(function(e){
+	*/
+	$('.bdf-resOrdering').change(function(e){
 		e.preventDefault();
 		//create the new path
-		var nQString = bdp.appendGet(window.location.href,'ord',$(this).val());
+		var nQString = appendGet(window.location.href,'ord',$(this).val());
+		//console.log(nQString);
 		var doPath = window.location.href.split('?')[0];
 		//console.log('New query string: ' + nQString);
+		//console.log('do path: ' + doPath);
 		doPath = doPath + (doPath.substr(-1) == '/' ? '' : '/') + nQString;
 		//alert("this is the doPath: " + doPath);
 		window.location.href = doPath;
 	});
-	*/
+	
 	/**
 	 * set a listener for the number results dropdown box
 	
@@ -481,7 +484,53 @@ function bdpModXCore(options){
 			});
 		});
 	
-	
+	/**
+	 * appends or replaces get variables in the query string
+	*/
+	function appendGet(qString,name,val){
+		var newVals = new Object;
+		//set teh nbew vals object
+		newVals[name] = val;
+		//run the appGet function
+		return appGet(qString,newVals);
+	}
+	/**
+	 * shortened version of append get, second parameter should be an associative array of the new get vars
+	*/
+	function appGet(qString,newVals){
+		var queryArr = [];
+		var queryArrOut = new Object;
+		var outputQString = '';
+		
+		var qStringParts =  qString.split( '?' );
+		if(qStringParts.length > 0){
+			qString = qStringParts[qStringParts.length-1];
+		}
+
+		
+		//set the existing queries
+		if(qString){
+			var queryArr = qString.split( '&' );
+		}	
+		
+		//grab an array of the current query string
+		for(var i in queryArr){
+			sp = queryArr[i].split('=');
+			if(sp.length > 1){
+				queryArrOut[sp[0]] = sp[1];
+			}
+		}
+		//put an array of new query values
+		newQueryArr = $.extend(queryArrOut,newVals);
+		var count = 0;
+		for(i in newQueryArr){
+			if(newQueryArr[i]){
+				outputQString = outputQString + '&' + i +'=' + newQueryArr[i];
+				count++;
+			}
+		}
+		return outputQString;
+	}
 }
 
 
