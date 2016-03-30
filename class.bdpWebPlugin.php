@@ -367,7 +367,7 @@ function viewingRequest(){
 			'message'=>$_POST['message'],
 			'contactData'=>array(
 				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'lastName'=>$_POST['lastName'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)
@@ -395,7 +395,7 @@ function detailRequest(){
 			'message'=>$_POST['message'],
 			'contactData'=>array(
 				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'lastName'=>$_POST['lastName'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)
@@ -429,7 +429,7 @@ function sendFriendRequest(){
 			),
 			'contactData'=>array(
 				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'lastName'=>$_POST['lastName'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)
@@ -454,19 +454,19 @@ function hReport(){
 		$rData = array(
 			'propertyId'=>$this->currentRef,
 			'createdDate'=>$requestDate,
-			'hrRequested'=>true,
+			'hrRequest'=>true,
 			'message'=>$_POST['message'],
 			'contactData'=>array(
-				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'firstName'=>(isset($_POST['name']) ? $_POST['name'] : $_POST['firstName']),
+				'lastName'=>$_POST['lastName'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)
 		);
 		
 		//run the api request
-		$this->api->newRequest($rData);
-		
+		$output = $this->api->newRequest($rData);
+
 		
 		$modalOutput = $this->processTpl('','thanks.html',array());
 		//send a success message to the user
@@ -876,7 +876,7 @@ function detailsPage(){
 			$this->hReport();
 		}
 	}
-	//var_dump($prop);
+	//var_dump($prop); exit;
 	//integrate the outer template
 	$display = $this->processModeTpl($this->tpl,'tpl',$prop);	
 	
