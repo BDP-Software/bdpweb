@@ -367,7 +367,7 @@ function viewingRequest(){
 			'message'=>$_POST['message'],
 			'contactData'=>array(
 				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'lastName'=>$_POST['lastName'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)
@@ -395,7 +395,8 @@ function detailRequest(){
 			'message'=>$_POST['message'],
 			'contactData'=>array(
 				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'lastName'=>$_POST['lastName'],
+				'name'=>$_POST['name'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)
@@ -454,11 +455,12 @@ function hReport(){
 		$rData = array(
 			'propertyId'=>$this->currentRef,
 			'createdDate'=>$requestDate,
-			'hrRequested'=>true,
+			'hrRequest'=>true,
 			'message'=>$_POST['message'],
 			'contactData'=>array(
 				'firstName'=>$_POST['firstName'],
-				'firstName'=>$_POST['lastName'],
+				'lastName'=>$_POST['lastName'],
+				'name'=>$_POST['name'],
 				'tel1'=>$_POST['tel'],
 				'email'=>$_POST['email'],
 			)

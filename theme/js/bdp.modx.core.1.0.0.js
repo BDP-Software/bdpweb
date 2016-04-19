@@ -223,13 +223,19 @@ function bdpModXCore(options){
 				tParams : {},
 				onComplete : function(){
 					//console.log('the modal should now have appeared');
+					var formDataArr = $(settings.enquiryFormHandle).serializeArray();
+					var formData = {
+						formData : '1',
+						enqtype : 'denquiry'
+					}
+					for(var i in formDataArr){
+						//console.log(formDataArr[i]);
+						formData[formDataArr[i]['name']] = formDataArr[i]['value'];
+					}
 					$.ajax({
 						url : window.location.href,
 						type : 'POST',
-						data : {
-							formData : '1',
-							enqtype : 'denquiry'
-						},
+						data : formData,
 						success : function(data){
 							if(data.output){
 								
